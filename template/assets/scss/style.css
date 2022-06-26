@@ -1,0 +1,270 @@
+/* globals */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  list-style: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: #181818;
+  color: #fff;
+}
+
+a {
+  color: #fff;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+img {
+  width: 100%;
+}
+
+video {
+  width: 100%;
+}
+
+/* navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 1rem 2rem;
+  background-color: #202020;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 10rem;
+}
+.nav__left {
+  display: flex;
+  align-items: center;
+}
+.nav__left .menuIcon {
+  width: 2.5rem;
+  margin-right: 2rem;
+}
+.nav__left .menuIcon img {
+  width: 100%;
+}
+.nav__left .logo {
+  display: flex;
+  align-items: center;
+  font-size: 2.5rem;
+}
+.nav__left .logo img {
+  width: 8rem;
+}
+.nav__left .logo h1 span {
+  color: #1dd320;
+}
+.nav__center form {
+  display: flex;
+  align-items: center;
+  border: 0.2rem solid #5f6368;
+  border-radius: 2.5rem;
+  transition: border-color 0.4s;
+}
+.nav__center form:hover {
+  border-color: #fff;
+}
+.nav__center form input {
+  width: 40rem;
+  height: 3.2rem;
+  padding: 0.8rem 1rem;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+}
+.nav__center form .searchButton {
+  width: 6rem;
+  height: 3.2rem;
+  border-left: solid 0.2rem #5f6368;
+  border-top-right-radius: 2.5rem;
+  border-bottom-right-radius: 2.5rem;
+  transition: background-color 0.4s;
+}
+.nav__center form .searchButton:hover {
+  background-color: #323232;
+}
+.nav__center form .searchButton img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.nav__right {
+  display: flex;
+  align-items: center;
+}
+.nav__right img {
+  width: 3rem;
+}
+.nav__right .userIcon {
+  width: 3.5rem;
+  border-radius: 50%;
+  margin-left: 1rem;
+}
+.nav__right .dropdown {
+  position: relative;
+  display: inline-block;
+}
+.nav__right .dropdown .dropdownContent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  background-color: #202020;
+  right: 0;
+  z-index: 11;
+  border: 0.1rem solid #5f6368;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+.nav__right .dropdown .dropdownContent a {
+  width: 100%;
+  font-size: 1.7rem;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+}
+.nav__right .dropdown .dropdownContent a img {
+  margin-right: 1rem;
+}
+.nav__right .dropdown .dropdownContent a:hover {
+  background-color: #5f6368;
+}
+.nav__right .dropdown .dropdownContent.show {
+  opacity: 1;
+  pointer-events: all;
+}
+.nav__right .signInBtn {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 0.2rem solid #1dd320;
+  color: #1dd320;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.7rem;
+}
+.nav__right .signInBtn img {
+  width: 2.5rem;
+  border: 0.2rem solid #1dd320;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 950px) {
+  .nav__left .logo {
+    font-size: 2rem;
+  }
+  .nav__left .logo img {
+    width: 5rem;
+  }
+
+  .nav__center form input {
+    width: 30rem;
+  }
+
+  .nav__right .signInBtn {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 800px) {
+  .nav__center form input {
+    width: 25rem;
+  }
+}
+@media (max-width: 750px) {
+  .nav__left .logo {
+    font-size: 1.5rem;
+  }
+  .nav__left .logo img {
+    width: 3rem;
+  }
+
+  .nav__center form input {
+    width: 20rem;
+  }
+
+  .nav__right .signInBtn {
+    padding: 0.3rem 0.7rem;
+    font-size: 1.3rem;
+  }
+  .nav__right .signInBtn img {
+    width: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .nav__left .logo {
+    font-size: 1rem;
+  }
+
+  .nav__center form input {
+    width: 15rem;
+  }
+  .nav__center form .searchButton {
+    width: 4rem;
+    height: 3rem;
+  }
+  .nav__center form .searchButton img {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .nav__right .uploadBtn {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .nav__left .menuIcon {
+    margin-right: 1rem;
+  }
+
+  .nav__center form input {
+    width: 12rem;
+  }
+
+  .nav__right .signInBtn {
+    font-size: 1.1rem;
+  }
+  .nav__right .signInBtn img {
+    width: 1.5rem;
+  }
+}
+@media (max-width: 450px) {
+  .nav {
+    padding: 1rem;
+  }
+  .nav__left .logo h1,
+.nav__left .menuIcon {
+    display: none;
+  }
+}
+@media (max-width: 350px) {
+  .nav__center form input {
+    width: 10rem;
+  }
+  .nav__center form .searchButton {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .nav__center form .searchButton img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}/*# sourceMappingURL=style.css.map */
