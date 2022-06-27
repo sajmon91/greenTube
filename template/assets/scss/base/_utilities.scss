@@ -43,3 +43,12 @@
     border-radius: 50%;
   }
 }
+
+main.content {
+  width: 100%;
+  overflow: hidden;
+
+  @media (max-width: 450px) {
+    padding-bottom: 7.5rem;
+  }
+}
