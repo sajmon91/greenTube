@@ -604,4 +604,22 @@ main.content {
   .trendingContent .videoItem .videoDetails .description {
     display: none;
   }
+}
+/* subscription page */
+.subscribeContent h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-bottom: 0.1rem solid #5f6368;
+}
+@media (max-width: 350px) {
+  .subscribeContent h2 {
+    font-size: 2rem;
+  }
+}
+.subscribeContent .listContent {
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+}
+.subscribeContent .listContent .videoItem .videoThumbnail {
+  height: 15rem;
 }/*# sourceMappingURL=style.css.map */
