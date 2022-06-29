@@ -427,7 +427,7 @@ main.content {
   border-bottom: 0.1rem solid #5f6368;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: row;
   padding: 1rem;
   font-size: 1.4rem;

@@ -6,7 +6,7 @@
   background-color: a.$nav-bg;
   border-top: 0.1rem solid a.$border-color;
   border-bottom: 0.1rem solid a.$border-color;
-  @include a.flex(center, space-between);
+  @include a.flex(center, flex-start);
   padding: 1rem;
   font-size: 1.4rem;
   overflow-x: auto;
