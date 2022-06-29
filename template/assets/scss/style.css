@@ -622,4 +622,112 @@ main.content {
 }
 .subscribeContent .listContent .videoItem .videoThumbnail {
   height: 15rem;
+}
+
+/* liked videos page */
+.likedVideosContent {
+  padding: 2rem;
+  display: flex;
+}
+.likedVideosContent .left {
+  margin-right: 1rem;
+}
+.likedVideosContent .left img {
+  max-width: 30rem;
+  min-width: 15rem;
+}
+.likedVideosContent .left h3 {
+  font-size: 3rem;
+  margin: 1rem 0;
+}
+.likedVideosContent .left p {
+  font-size: 1.7rem;
+  color: #aaa;
+}
+.likedVideosContent .right {
+  width: 100%;
+}
+.likedVideosContent .right .videoItem {
+  display: flex;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid #5f6368;
+}
+.likedVideosContent .right .videoItem .number {
+  font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  color: #aaa;
+}
+.likedVideosContent .right .videoItem .videoThumbnail {
+  width: 25rem;
+  position: relative;
+}
+.likedVideosContent .right .videoItem .videoDetails {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+.likedVideosContent .right .videoItem .videoDetails .videoTitle {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+.likedVideosContent .right .videoItem .videoDetails .channelName {
+  font-size: 1.5rem;
+  color: #aaa;
+}
+
+@media (max-width: 800px) {
+  .likedVideosContent {
+    flex-direction: column;
+  }
+  .likedVideosContent .left {
+    display: flex;
+    align-items: center;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 0.1rem solid #5f6368;
+  }
+  .likedVideosContent .left div {
+    margin-left: 1rem;
+  }
+}
+@media (max-width: 600px) {
+  .likedVideosContent .left h3 {
+    font-size: 2rem;
+  }
+  .likedVideosContent .right .videoItem .videoThumbnail {
+    width: 15rem;
+  }
+  .likedVideosContent .right .videoItem .videoDetails .videoTitle {
+    font-size: 1.6rem;
+  }
+  .likedVideosContent .right .videoItem .videoDetails .channelName {
+    font-size: 1.4rem;
+  }
+}
+@media (max-width: 500px) {
+  .likedVideosContent .left {
+    flex-direction: column;
+  }
+  .likedVideosContent .left div {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+@media (max-width: 450px) {
+  .likedVideosContent {
+    padding: 1rem;
+  }
+  .likedVideosContent .right .videoItem .videoThumbnail {
+    width: 10rem;
+  }
+  .likedVideosContent .right .videoItem .videoDetails .videoTitle {
+    font-size: 1.3rem;
+  }
+  .likedVideosContent .right .videoItem .videoDetails .channelName {
+    font-size: 1.2rem;
+  }
 }/*# sourceMappingURL=style.css.map */
