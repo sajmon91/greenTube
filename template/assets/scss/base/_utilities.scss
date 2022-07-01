@@ -82,3 +82,22 @@ main.content {
     }
   }
 }
+
+.formBtn {
+  font-size: 1.6rem;
+  background-color: a.$green;
+  color: #000;
+  padding: 0.7rem 1.8rem;
+  border-radius: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+  border: 0.1rem solid transparent;
+  transition: all 0.3s ease-in-out;
+  margin-bottom: 1.5rem;
+
+  &:hover {
+    background-color: transparent;
+    color: a.$green;
+    border-color: a.$green;
+  }
+}
