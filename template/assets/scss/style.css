@@ -112,6 +112,31 @@ main.content {
   border-radius: 0.5rem;
 }
 
+@-webkit-keyframes display-none-transition {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes display-none-transition {
+  0% {
+    display: none;
+    opacity: 0;
+  }
+  1% {
+    display: block;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 /* navigation */
 .nav {
   display: flex;
@@ -1009,5 +1034,217 @@ main.content {
   .videoContent .suggestions .videoItem .videoThumbnail {
     width: 15rem;
     height: 8rem;
+  }
+}
+/* profile page */
+.profileContent {
+  padding: 1rem 2.5rem;
+}
+.profileContent .profile {
+  height: 45vh;
+  max-height: 35rem;
+  min-height: 27rem;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.profileContent .profile .profileCover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  border-radius: 0.4rem 0.4rem 0.6rem 0.6rem;
+}
+.profileContent .profile .profileMenu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  background-color: #202020;
+  width: 100%;
+  box-shadow: -0.1rem 0.3rem 0.8rem -0.1rem rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 0.4rem 0.4rem;
+  padding: 0 2.5rem;
+  z-index: 2;
+}
+.profileContent .profile .profileMenu .profileAvatar {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.profileContent .profile .profileMenu .profileAvatar .profileImg {
+  border-radius: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-right: 1rem;
+}
+.profileContent .profile .profileMenu .profileAvatar .profileName {
+  white-space: nowrap;
+  font-size: 1.6rem;
+}
+.profileContent .profile .profileMenu .menuItems {
+  display: flex;
+  cursor: pointer;
+}
+.profileContent .profile .profileMenu .menuItems .profileMenuLink {
+  padding: 2rem;
+  font-size: 1.5rem;
+  transition: all 0.3s ease-in-out;
+  border-bottom: 0.3rem solid transparent;
+}
+.profileContent .profile .profileMenu .menuItems .profileMenuLink.active, .profileContent .profile .profileMenu .menuItems .profileMenuLink:hover {
+  border-bottom: 0.3rem solid #1dd320;
+  color: #1dd320;
+}
+.profileContent .profile .profileMenu .subsButton {
+  display: flex;
+  align-items: center;
+}
+.profileContent .profile .profileMenu .subsButton .follow {
+  border: 0.2rem solid #5f6368;
+  border-radius: 2.5rem 0 0 2.5rem;
+  padding: 0.8rem 1.6rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+.profileContent .profile .profileMenu .subsButton .subs {
+  border-radius: 0 2.5rem 2.5rem 0;
+  transition: all 0.3s ease-in-out;
+}
+.profileContent .profile .profileMenu .subsButton .subs:hover {
+  background-color: #1dd320;
+  color: #000;
+}
+.profileContent .profile .profileInfo {
+  justify-content: center;
+  display: flex;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  z-index: 2;
+  border-top-right-radius: 2.5rem;
+  border-top-left-radius: 2.5rem;
+}
+.profileContent .profile .profileInfo .profileItem {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 2.6rem 1.6rem;
+  white-space: nowrap;
+  font-size: 1.3rem;
+}
+.profileContent .profile .profileInfo .profileItem svg {
+  width: 2.5rem;
+  margin-right: 1rem;
+}
+.profileContent .tabContent {
+  overflow: hidden;
+}
+.profileContent .tabContent [data-tab-content] {
+  display: none;
+  -webkit-animation: display-none-transition 1s ease-in-out;
+          animation: display-none-transition 1s ease-in-out;
+}
+.profileContent .tabContent .active[data-tab-content] {
+  display: block;
+}
+.profileContent .tabContent .tabVideos {
+  padding: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(20rem, 1fr));
+  grid-column-gap: 1.6rem;
+  grid-row-gap: 3rem;
+}
+.profileContent .tabContent .tabVideos .videoItem .videoThumbnail {
+  height: 15rem;
+  overflow: hidden;
+  position: relative;
+}
+.profileContent .tabContent .tabVideos .videoItem .videoInfo {
+  padding: 0.5rem;
+}
+.profileContent .tabContent .tabVideos .videoItem .videoInfo a {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+.profileContent .tabContent .tabVideos .videoItem .videoInfo p {
+  font-size: 1.3rem;
+  color: #aaa;
+}
+.profileContent .tabContent .tabAbout {
+  padding: 2.5rem;
+  font-size: 1.6rem;
+}
+.profileContent .tabContent .tabAbout h3 {
+  font-size: 2.5rem;
+}
+.profileContent .tabContent .tabAbout .tabDesc {
+  margin-bottom: 1rem;
+}
+.profileContent .tabContent .tabAbout .values {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1450px) {
+  .profileContent .tabContent .tabVideos {
+    grid-template-columns: repeat(5, minmax(20rem, 1fr));
+  }
+}
+@media (max-width: 1240px) {
+  .profileContent .tabContent .tabVideos {
+    grid-template-columns: repeat(4, minmax(20rem, 1fr));
+  }
+}
+@media (max-width: 1020px) {
+  .profileContent .tabContent .tabVideos {
+    grid-template-columns: repeat(3, minmax(20rem, 1fr));
+  }
+}
+@media (max-width: 800px) {
+  .profileContent .profile .profileMenu {
+    flex-direction: column;
+  }
+  .profileContent .profile .profileMenu .profileAvatar {
+    flex-direction: column;
+  }
+  .profileContent .profile .profileMenu .profileAvatar .profileImg {
+    margin-right: 0;
+    margin-top: 1rem;
+  }
+  .profileContent .profile .profileMenu .profileAvatar .profileName {
+    display: block;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+  .profileContent .profile .profileMenu .menuItems {
+    order: 1;
+  }
+  .profileContent .profile .profileInfo .profileItem {
+    text-align: center;
+    flex-direction: column;
+  }
+  .profileContent .profile .profileInfo .profileItem svg {
+    margin-right: 0;
+  }
+  .profileContent .tabContent .tabVideos {
+    grid-template-columns: repeat(2, minmax(20rem, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .profileContent .tabContent .tabVideos {
+    grid-template-columns: repeat(2, minmax(15rem, 1fr));
+  }
+}
+@media (max-width: 500px) {
+  .profileContent .tabContent .tabVideos {
+    grid-template-columns: repeat(1, minmax(15rem, 1fr));
   }
 }/*# sourceMappingURL=style.css.map */
