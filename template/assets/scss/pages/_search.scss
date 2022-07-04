@@ -1,0 +1,43 @@
+/* search page */
+@use "../abstracts" as a;
+
+.searchContent {
+  .searchHeader {
+    @include a.flex(center, space-between);
+    padding: 1rem;
+    border-bottom: 0.1rem solid a.$border-color;
+
+    h3 {
+      font-size: 2rem;
+    }
+
+    span {
+      font-size: 1.6rem;
+    }
+
+    a {
+      font-size: 1.5rem;
+      color: a.$grey-font;
+
+      &:hover {
+        color: #fff;
+      }
+
+      &:not(:last-child)::after {
+        content: " | ";
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .searchContent {
+    .searchHeader {
+      flex-direction: column;
+
+      h3 {
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}

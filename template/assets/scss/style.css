@@ -1384,4 +1384,39 @@ main.content {
 }
 .signInLoginContainer .signInLoginWrapper a:hover {
   color: #1dd320;
+}
+
+/* search page */
+.searchContent .searchHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 1rem;
+  border-bottom: 0.1rem solid #5f6368;
+}
+.searchContent .searchHeader h3 {
+  font-size: 2rem;
+}
+.searchContent .searchHeader span {
+  font-size: 1.6rem;
+}
+.searchContent .searchHeader a {
+  font-size: 1.5rem;
+  color: #aaa;
+}
+.searchContent .searchHeader a:hover {
+  color: #fff;
+}
+.searchContent .searchHeader a:not(:last-child)::after {
+  content: " | ";
+}
+
+@media (max-width: 400px) {
+  .searchContent .searchHeader {
+    flex-direction: column;
+  }
+  .searchContent .searchHeader h3 {
+    margin-bottom: 1rem;
+  }
 }/*# sourceMappingURL=style.css.map */
