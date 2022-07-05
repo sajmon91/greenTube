@@ -1,0 +1,85 @@
+/* dashboard page */
+@use "../abstracts" as a;
+
+.dashboardContent {
+  width: 100%;
+  padding: 1rem 3rem;
+
+  h2 {
+    padding: 1rem;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    border-bottom: 0.1rem solid a.$border-color;
+  }
+
+  .dashboardTable {
+    input {
+      width: 100%;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      border-bottom: 0.1rem solid a.$border-color;
+      padding: 1rem;
+    }
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      width: 100%;
+
+      th,
+      td {
+        text-align: left;
+        padding: 1rem;
+        border-bottom: 0.1rem solid a.$border-color;
+      }
+
+      th {
+        font-size: 1.6rem;
+      }
+
+      td {
+        font-size: 1.4rem;
+      }
+
+      tbody tr:hover {
+        background-color: #000;
+      }
+
+      .tableVideo {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 15rem;
+          margin-right: 1rem;
+        }
+
+        .description {
+          font-size: 1.2rem;
+          margin-top: 0.5rem;
+          color: a.$grey-font;
+          width: 70rem;
+        }
+      }
+
+      &.table-sortable .th-sort-asc::after {
+        content: "\25b4";
+      }
+
+      &.table-sortable .th-sort-desc::after {
+        content: "\25be";
+      }
+
+      .sort {
+        cursor: pointer;
+      }
+
+      .table-sortable .th-sort-asc,
+      .table-sortable .th-sort-desc {
+        background-color: #000;
+      }
+    }
+  }
+}
