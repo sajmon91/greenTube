@@ -176,157 +176,77 @@
 
     <main class="content">
 
-      <div class="tags">
-        <a href="#">Tag1</a>
-        <a href="#">Tag2</a>
-        <a href="#">Tag3</a>
-        <a href="#">Tag4</a>
-        <a href="#">Tag5</a>
-        <a href="#">Tag6</a>
-        <a href="#">Lorem ipsum dolor sit ame.</a>
-        <a href="#">Lorem, ipsum dolor.</a>
-        <a href="#">Tag3</a>
-        <a href="#">Tag4</a>
-        <a href="#">Tag5</a>
-        <a href="#">Tag6</a>
-        <a href="#">Lorem ipsum dolor sit ame.</a>
-        <a href="#">Lorem, ipsum dolor.</a>
-        <a href="#">Tag3</a>
-        <a href="#">Tag4</a>
-        <a href="#">Tag5</a>
-        <a href="#">Tag6</a>
-        <a href="#">Lorem ipsum dolor sit ame.</a>
-        <a href="#">Lorem, ipsum dolor.</a>
-        <a href="#">Tag3</a>
-        <a href="#">Tag4</a>
-      </div>
+      <div class="uploadEditVideoContent">
 
-      <div class="listContent">
+        <h2>Upload Video</h2>
 
-        <div class="videoItem">
-          <a href="video.html">
-            <div class="videoThumbnail">
-              <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail1.png">
-                <source src="uploads/videos/video2.mp4" type="video/mp4">
-              </video>
-              <div class="duration">
-                <span>00:25</span>
-              </div>
-            </div>
-          </a>
-          <div class="videoDetails">
-            <img src="assets/images/profilePictures/defaults/head_wisteria.png" alt="user image">
-            <div class="videoInfo">
-              <a href="video.html">Title of video</a>
-              <p>Channel name</p>
-              <p>20k views &bull; 2 days ago</p>
+        <div class="uploadWrapper">
+
+          <div class="uploadInput">
+            <label class="uploadLabel" for="inputFile">Your file</label>
+            <input type="file" id="inputFile" name="fileInput" required>
+          </div>
+
+          <div class="uploadInput">
+            <label class="uploadLabel" for="title">Title</label>
+            <input type="text" id="title">
+          </div>
+
+          <div class="uploadInput">
+            <label class="uploadLabel" for="description">Description</label>
+            <textarea id="description"></textarea>
+          </div>
+
+          <div class="uploadInput">
+            <label class="uploadLabel" for="category">Category</label>
+            <select class="uploadSelect" id="category">
+              <option value="1">Film &amp; Animation</option>
+              <option value="2">Autos &amp; Vehicles</option>
+              <option value="3">Music</option>
+              <option value="4">Pets &amp; Animals</option>
+              <option value="5">Sports</option>
+              <option value="6">Travel &amp; Events</option>
+              <option value="7">Gaming</option>
+              <option value="8">People &amp; Blogs</option>
+              <option value="9">Comedy</option>
+              <option value="10">Entertainment</option>
+              <option value="11">News &amp; Politics</option>
+              <option value="12">Howto &amp; Style</option>
+              <option value="13">Education</option>
+              <option value="14">Science &amp; Technology</option>
+              <option value="15">Nonprofits &amp; Activism</option>
+            </select>
+          </div>
+
+          <div class="uploadInput">
+            <label class="uploadLabel" for="privacy">Privacy</label>
+            <select class="uploadSelect" id="privacy">
+              <option value="0">Private</option>
+              <option value="1">Public</option>
+            </select>
+          </div>
+
+          <div class="uploadInput">
+            <p class="uploadPara">Comments</p>
+            <div class="comments">
+              <input type="radio" name="comments" id="on" value="1" checked>
+              <label for="on">On</label>
+              <input type="radio" name="comments" id="off" value="0">
+              <label for="off">Off</label>
             </div>
           </div>
-        </div>
 
-        <div class="videoItem">
-          <a href="video.html">
-            <div class="videoThumbnail">
-              <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail4.jpg">
-                <source src="uploads/videos/video3.mp4" type="video/mp4">
-              </video>
-              <div class="duration">
-                <span>00:25</span>
-              </div>
+          <div class="uploadInput">
+            <label class="uploadLabel" for="tags">Tags <span>(optional)</span></label>
+            <div class="uploadTags">
+              <input type="text" id="tags">
+              <p>(Separate with coma)</p>
             </div>
-          </a>
-          <div class="videoDetails">
-            <img src="assets/images/profilePictures/defaults/head_pomegranate.png" alt="user image">
-            <div class="videoInfo">
-              <a href="video.html">Title of video</a>
-              <p>Channel name</p>
-              <p>20k views &bull; 2 days ago</p>
-            </div>
-          </div>
-        </div>
 
-        <div class="videoItem">
-          <a href="video.html">
-            <div class="videoThumbnail">
-              <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail2.jpg">
-                <source src="uploads/videos/video1.mp4" type="video/mp4">
-              </video>
-              <div class="duration">
-                <span>00:25</span>
-              </div>
-            </div>
-          </a>
-          <div class="videoDetails">
-            <img src="assets/images/profilePictures/defaults/head_deep_blue.png" alt="user image">
-            <div class="videoInfo">
-              <a href="video.html">Title of video</a>
-              <p>Channel name</p>
-              <p>20k views &bull; 2 days ago</p>
-            </div>
           </div>
-        </div>
 
-        <div class="videoItem">
-          <a href="video.html">
-            <div class="videoThumbnail">
-              <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail3.jpg">
-                <source src="uploads/videos/video2.mp4" type="video/mp4">
-              </video>
-              <div class="duration">
-                <span>00:25</span>
-              </div>
-            </div>
-          </a>
-          <div class="videoDetails">
-            <img src="assets/images/profilePictures/defaults/head_pomegranate.png" alt="user image">
-            <div class="videoInfo">
-              <a href="video.html">Title of video</a>
-              <p>Channel name</p>
-              <p>20k views &bull; 2 days ago</p>
-            </div>
-          </div>
-        </div>
+          <button class="formBtn">Upload</button>
 
-        <div class="videoItem">
-          <a href="video.html">
-            <div class="videoThumbnail">
-              <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail1.png">
-                <source src="uploads/videos/video1.mp4" type="video/mp4">
-              </video>
-              <div class="duration">
-                <span>00:25</span>
-              </div>
-            </div>
-          </a>
-          <div class="videoDetails">
-            <img src="assets/images/profilePictures/defaults/head_pumpkin.png" alt="user image">
-            <div class="videoInfo">
-              <a href="video.html">Title of video</a>
-              <p>Channel name</p>
-              <p>20k views &bull; 2 days ago</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="videoItem">
-          <a href="video.html">
-            <div class="videoThumbnail">
-              <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail4.jpg">
-                <source src="uploads/videos/video3.mp4" type="video/mp4">
-              </video>
-              <div class="duration">
-                <span>00:25</span>
-              </div>
-            </div>
-          </a>
-          <div class="videoDetails">
-            <img src="assets/images/profilePictures/defaults/head_green_sea.png" alt="user image">
-            <div class="videoInfo">
-              <a href="video.html">Title of video</a>
-              <p>Channel name</p>
-              <p>20k views &bull; 2 days ago</p>
-            </div>
-          </div>
         </div>
 
       </div>
