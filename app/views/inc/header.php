@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/logo.png">
   <link rel="stylesheet" href="assets/scss/style.css">
-  <title>Green Tube</title>
+  <title><?php echo $data['title'] ?? SITENAME; ?></title>
 </head>
 
 <body>
@@ -35,28 +35,33 @@
 
     <div class="nav__right">
 
-      <a href="upload.html" title="Upload video" class="uploadBtn">
-        <img class="upload" src="assets/images/icons/upload-icon.png" alt="upload icon">
-      </a>
+      <?php if(isLoggedIn()): ?>
 
+        <a href="upload.html" title="Upload video" class="uploadBtn">
+          <img class="upload" src="assets/images/icons/upload-icon.png" alt="upload icon">
+        </a>
 
-      <div class="dropdown">
-        <button class="dropBtn" title='username'>
-          <img class="userIcon" src='assets/images/profilePictures/defaults/head_alizarin.png' class='profilePicture'>
-        </button>
+        <div class="dropdown">
+          <button class="dropBtn" title='username'>
+            <img class="userIcon" src='assets/images/profilePictures/defaults/head_alizarin.png' class='profilePicture'>
+          </button>
 
-        <div class="dropdownContent">
-          <a href="profile.html"><img src="assets/images/icons/user-white.png" alt="user"> Profile</a>
-          <a href="dashboard.html"><img src="assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
-          <a href="settings.html"><img src="assets/images/icons/settings.png" alt="settings">Settings</a>
-          <a href="#"><img src="assets/images/icons/logout.png" alt="logout">Logout</a>
+          <div class="dropdownContent">
+            <a href="profile.html"><img src="assets/images/icons/user-white.png" alt="user"> Profile</a>
+            <a href="dashboard.html"><img src="assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
+            <a href="settings.html"><img src="assets/images/icons/settings.png" alt="settings">Settings</a>
+            <a href="#"><img src="assets/images/icons/logout.png" alt="logout">Logout</a>
+          </div>
         </div>
-      </div>
 
+      <?php else: ?>
 
-      <!-- <a class="signInBtn" href="signIn.html">
-        <img src="assets/images/icons/user.png">Sign In
-      </a> -->
+        <a class="signInBtn" href="<?=URLROOT;?>/users/signin">
+          <img src="assets/images/icons/user.png">Sign In
+        </a>
+
+      <?php endif; ?>
+
     </div>
 
   </nav>
@@ -132,44 +137,48 @@
         </ul>
       </div>
 
-      <hr>
+      <?php if(isLoggedIn()): ?>
 
-      <div class="sidebar__middle">
-        <h3 class="hiddenSidebar">subscribed</h3>
-        <ul class="sidebarList">
+        <hr>
 
-          <li class="sidebarListItem">
-            <a href="profile.html" class="sidebarLink" title="username">
-              <img class="subsIcon" src="assets/images/profilePictures/defaults/head_carrot.png" alt="user icon">
-              <p class="hiddenSidebar">chanel name</p>
-            </a>
-          </li>
+        <div class="sidebar__middle">
+          <h3 class="hiddenSidebar">subscribed</h3>
+          <ul class="sidebarList">
 
-          <li class="sidebarListItem">
-            <a href="profile.html" class="sidebarLink" title="username">
-              <img class="subsIcon" src="assets/images/profilePictures/defaults/head_amethyst.png" alt="user icon">
-              <p class="hiddenSidebar">username</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+            <li class="sidebarListItem">
+              <a href="profile.html" class="sidebarLink" title="username">
+                <img class="subsIcon" src="assets/images/profilePictures/defaults/head_carrot.png" alt="user icon">
+                <p class="hiddenSidebar">chanel name</p>
+              </a>
+            </li>
 
-      <div class="sidebar__bottom">
-        <ul class="sidebarList">
-          <li class="sidebarListItem">
-            <a href="settings.html" class="sidebarLink" title="Settings">
-              <img src="assets/images/icons/settings.png" alt="settings icon">
-              <p class="hiddenSidebar">Settings</p>
-            </a>
-          </li>
+            <li class="sidebarListItem">
+              <a href="profile.html" class="sidebarLink" title="username">
+                <img class="subsIcon" src="assets/images/profilePictures/defaults/head_amethyst.png" alt="user icon">
+                <p class="hiddenSidebar">username</p>
+              </a>
+            </li>
+          </ul>
+        </div>
 
-          <li class="sidebarListItem">
-            <a href="#" class="sidebarLink" title="Logout">
-              <img src="assets/images/icons/logout.png" alt="logout icon">
-              <p class="hiddenSidebar">Logout</p>
-            </a>
-          </li>
-        </ul>
-      </div>
+        <div class="sidebar__bottom">
+          <ul class="sidebarList">
+            <li class="sidebarListItem">
+              <a href="settings.html" class="sidebarLink" title="Settings">
+                <img src="assets/images/icons/settings.png" alt="settings icon">
+                <p class="hiddenSidebar">Settings</p>
+              </a>
+            </li>
+
+            <li class="sidebarListItem">
+              <a href="#" class="sidebarLink" title="Logout">
+                <img src="assets/images/icons/logout.png" alt="logout icon">
+                <p class="hiddenSidebar">Logout</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+      <?php endif; ?>
 
     </aside>

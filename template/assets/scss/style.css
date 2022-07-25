@@ -295,11 +295,9 @@ main.content {
   .nav__left .logo img {
     width: 5rem;
   }
-
   .nav__center form input {
     width: 30rem;
   }
-
   .nav__right .signInBtn {
     font-size: 1.5rem;
   }
@@ -316,11 +314,9 @@ main.content {
   .nav__left .logo img {
     width: 3rem;
   }
-
   .nav__center form input {
     width: 20rem;
   }
-
   .nav__right .signInBtn {
     padding: 0.3rem 0.7rem;
     font-size: 1.3rem;
@@ -333,7 +329,6 @@ main.content {
   .nav__left .logo {
     font-size: 1rem;
   }
-
   .nav__center form input {
     width: 15rem;
   }
@@ -345,7 +340,6 @@ main.content {
     width: 2rem;
     height: 2rem;
   }
-
   .nav__right .uploadBtn {
     display: none;
   }
@@ -354,11 +348,9 @@ main.content {
   .nav__left .menuIcon {
     margin-right: 1rem;
   }
-
   .nav__center form input {
     width: 12rem;
   }
-
   .nav__right .signInBtn {
     font-size: 1.1rem;
   }

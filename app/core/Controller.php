@@ -1,9 +1,9 @@
 <?php 
 
 /*
-	 * Base Controller
-	 * Loads the models and views
-	*/
+ * Base Controller
+ * Loads the models and views
+*/
 
 
 class Controller

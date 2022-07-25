@@ -11,9 +11,11 @@ if (menuDropdown) {
 const menuBtn = document.querySelector(".menuIcon");
 const sidebar = document.querySelector(".sidebar");
 
-menuBtn.addEventListener("click", () => {
-  sidebar.classList.toggle("open");
-});
+if (menuBtn) {
+  menuBtn.addEventListener("click", () => {
+    sidebar.classList.toggle("open");
+  });
+}
 
 // videos hover
 const allVideos = document.querySelectorAll(".videoPlay");
