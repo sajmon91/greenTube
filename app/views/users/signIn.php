@@ -29,12 +29,12 @@
         <form action="#" method="POST">
 
           <div class="formInput">
-            <input type="text" name="username" required>
+            <input type="text" name="username" value="<?= $data['username']; ?>" required>
             <label for="username" class="labelName">
               <span class="contentName">Username</span>
             </label>
           </div>
-          <span class=error></span>
+          <span class=error><?= $data['usernameErr']; ?></span>
 
 
           <div class="formInput">
@@ -43,7 +43,7 @@
               <span class="contentName">Password</span>
             </label>
           </div>
-          <span class=error></span>
+          <span class=error><?= $data['passwordErr']; ?></span>
 
           <button class="formBtn">Submit</button>
 

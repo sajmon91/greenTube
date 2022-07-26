@@ -31,7 +31,7 @@ class Users extends Controller
 			$pics = scandir(ROOT . '/public/assets/images/profilePictures/defaults');
       		$rand = rand(2, count($pics) - 1);
 			$pic = $pics[$rand];
-      		$profilePic = URLROOT . "/public/assets/images/profilePictures/defaults/${pic}";
+      		$profilePic = "/public/assets/images/profilePictures/defaults/${pic}";
 
 			// init data
 	      	$data = [
@@ -114,9 +114,66 @@ class Users extends Controller
 
 ///////////////////////////////////////////////////
 
+	// login user
 	public function signIn()
 	{
-	    $this->view('users/signIn');
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			// sanitize post data
+      		$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+      		$password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+      		// init data
+		    $data = [
+		        'username' => trim($username),
+		        'password' => trim($password),
+		        'usernameErr' => '',
+		        'passwordErr' => ''
+		    ];
+
+		    // validate username
+		    if (empty($username)) {
+	      		$data['usernameErr'] = 'Please enter username';
+
+	      	}else if (!$this->userModel->findUserByUsername($username)) {
+	      		$data['usernameErr'] =  'Wrong username';
+	      	}
+
+	      	// validate password
+	      	if (empty($password)) {
+	      		$data['passwordErr'] = 'Please enter password';
+	      	}
+
+	      	// make sure errors are empty
+	      	if (empty($data['usernameErr']) && empty($data['passwordErr'])) {
+
+	      		//check and set logged in user
+	        	$loggedInUser = $this->userModel->login($data['username'], $data['password']);
+
+	        	if ($loggedInUser) {
+	        		// create sessions
+	        		$this->createUserSession($loggedInUser);
+	        	}else{
+	        		$data['passwordErr'] = 'Wrong password';
+	        	}
+	        }
+
+	      	// load view with errors
+	    	$this->view('users/signIn', $data);
+	      	
+
+		}else{
+
+			// init data
+		    $data = [
+		        'username' => '',
+		        'password' => '',
+		        'usernameErr' => '',
+		        'passwordErr' => ''
+		    ];
+
+		    // load view
+	    	$this->view('users/signIn', $data);
+		}
 	}
 
 ///////////////////////////////////////////////////
@@ -216,7 +273,23 @@ class Users extends Controller
 
 //////////////////////////////////////////////////////
 
+	private function createUserSession($user)
+	{
+	    $_SESSION['user_id'] = $user->userId;
+    	redirect('');
+	}
 
+//////////////////////////////////////////////////////
+
+	// logout user and session destroy
+	public function logout()
+	{
+		unset($_SESSION['user_id']);
+	    session_destroy();
+	    redirect('');
+	}
+
+//////////////////////////////////////////////////////
 
 } // end class
 

@@ -80,6 +80,27 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+	// login user
+	public function login($username, $password)
+	{
+	    $this->db->query('SELECT * FROM users WHERE username = :username');
+	    $this->db->bind(':username', $username);
+
+	    $row = $this->db->single();
+
+	    $hashedPassword = $row->password;
+
+	    // check for password matches
+	    if (password_verify($password, $hashedPassword)) {
+	      return $row;
+	    }else{
+	      return false;
+	    }
+	}
+
+////////////////////////////////////////////////////////////////////////////
+
+
 
 	
 } // end class

@@ -50,7 +50,7 @@
             <a href="profile.html"><img src="assets/images/icons/user-white.png" alt="user"> Profile</a>
             <a href="dashboard.html"><img src="assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
             <a href="settings.html"><img src="assets/images/icons/settings.png" alt="settings">Settings</a>
-            <a href="#"><img src="assets/images/icons/logout.png" alt="logout">Logout</a>
+            <a href="<?= URLROOT; ?>/users/logout"><img src="assets/images/icons/logout.png" alt="logout">Logout</a>
           </div>
         </div>
 
