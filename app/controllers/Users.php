@@ -276,6 +276,8 @@ class Users extends Controller
 	private function createUserSession($user)
 	{
 	    $_SESSION['user_id'] = $user->userId;
+	    $_SESSION['username'] = $user->username;
+	    $_SESSION['profile_pic'] = $user->profilePic;
     	redirect('');
 	}
 
@@ -284,7 +286,6 @@ class Users extends Controller
 	// logout user and session destroy
 	public function logout()
 	{
-		unset($_SESSION['user_id']);
 	    session_destroy();
 	    redirect('');
 	}

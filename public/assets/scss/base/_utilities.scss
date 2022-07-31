@@ -101,3 +101,9 @@ main.content {
     border-color: a.$green;
   }
 }
+
+.swal2-container.swal2-center > .swal2-popup {
+  font-size: 1.5rem;
+  background-color: #181818;
+  color: #fff;
+}

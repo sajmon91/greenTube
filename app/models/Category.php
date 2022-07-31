@@ -1,0 +1,48 @@
+<?php 
+
+/**
+ * Category model
+ */
+class Category
+{
+	private $db;
+
+////////////////////////////////////////////////////////////////////////////
+
+  public function __construct()
+  {
+      $this->db = new Database;
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+	//get all category
+  public function getAll()
+  {
+   	$this->db->query('SELECT * FROM categories');
+
+   	return $this->db->resultSet();    
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
+	
+} // end class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ?>
