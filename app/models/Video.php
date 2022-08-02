@@ -55,8 +55,25 @@ class Video
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function getRandomVideos()
+	{
+	    $this->db->query("SELECT v.videoId, v.title, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username, u.profilePic FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE v.privacy = 0  ORDER BY RAND() LIMIT 20");
 
+	    return $this->db->resultSet();
+	}
 
+////////////////////////////////////////////////////////////////////////////
+
+	public function getVideosByTag($videoId)
+	{
+	    $this->db->query("SELECT v.videoId, v.title, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username, u.profilePic FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE v.privacy = 0 AND v.videoId = :videoId ORDER BY RAND() LIMIT 20");
+
+	    $this->db->bind(':videoId', $videoId);
+
+	    return $this->db->single();
+	}
+
+//////////////////////////////////////////////////////////////////////////
 	
 } // end class
 

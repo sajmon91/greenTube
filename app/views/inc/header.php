@@ -69,7 +69,7 @@
   <nav class="mobNav">
     <ul class="mobNavList">
       <li class="sidebarListItem">
-        <a href="index.html" class="sidebarLink">
+        <a href="<?= URLROOT; ?>" class="sidebarLink">
           <img src="<?= URLROOT; ?>/assets/images/icons/home.png" alt="Home icon">
           <p>Home</p>
         </a>
@@ -107,7 +107,7 @@
         <ul class="sidebarList">
 
           <li class="sidebarListItem">
-            <a href="index.html" class="sidebarLink" title="Home">
+            <a href="<?= URLROOT; ?>" class="sidebarLink" title="Home">
               <img src="<?= URLROOT; ?>/assets/images/icons/home.png" alt="Home icon">
               <p class="hiddenSidebar">Home</p>
             </a>

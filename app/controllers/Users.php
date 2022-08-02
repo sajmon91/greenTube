@@ -31,7 +31,7 @@ class Users extends Controller
 			$pics = scandir(ROOT . '/public/assets/images/profilePictures/defaults');
       		$rand = rand(2, count($pics) - 1);
 			$pic = $pics[$rand];
-      		$profilePic = "/public/assets/images/profilePictures/defaults/${pic}";
+      		$profilePic = "/assets/images/profilePictures/defaults/${pic}";
 
 			// init data
 	      	$data = [
