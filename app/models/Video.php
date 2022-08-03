@@ -74,7 +74,51 @@ class Video
 	}
 
 //////////////////////////////////////////////////////////////////////////
+
+	public function getVideoById($id)
+	{
+	    $this->db->query("SELECT * FROM videos WHERE videoId = :videoId");
+
+	    $this->db->bind(':videoId', $id);
+
+	    return $this->db->single();
+	}
 	
+//////////////////////////////////////////////////////////////////////////
+
+	public function updateViews($id)
+	{
+	    $this->db->query("UPDATE videos SET views = views + 1 WHERE videoId = :videoId");
+
+	    $this->db->bind(':videoId', $id);
+
+	    $this->db->execute();
+	}
+
+//////////////////////////////////////////////////////////////////////////
+
+	public function getVideosByCategory($catId, $videoId)
+	{
+	    $this->db->query("SELECT v.videoId, v.title, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE v.privacy = 0 AND v.category = :catId AND v.videoId != :videoId ORDER BY RAND() LIMIT 20");
+
+	    $this->db->bind(':catId', $catId);
+	    $this->db->bind(':videoId', $videoId);
+
+	    return $this->db->resultSet();
+	}
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
 } // end class
 
 

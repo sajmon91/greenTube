@@ -16,26 +16,26 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
-  	//find user by username
-    public function findUserByUsername($username)
-    {
-       	$this->db->query('SELECT userId FROM users WHERE username = :username');
-       	// bind value
-       	$this->db->bind(':username', $username);
- 
-       	$row = $this->db->single();
- 
-       	// check row
-       	if ($this->db->rowCount() > 0) {
-         	return true;
-       	}else{
-         	return false;
-       	}
-    }
+	//find user by username
+  public function findUserByUsername($username)
+  {
+     	$this->db->query('SELECT userId FROM users WHERE username = :username');
+     	// bind value
+     	$this->db->bind(':username', $username);
+
+     	$row = $this->db->single();
+
+     	// check row
+     	if ($this->db->rowCount() > 0) {
+       	return true;
+     	}else{
+       	return false;
+     	}
+  }
 
 ////////////////////////////////////////////////////////////////////////////
 
-    // find user by email
+  // find user by email
 	public function findUserByEmail($email)
 	{
 	    $this->db->query('SELECT userId FROM users WHERE email = :email');
@@ -100,7 +100,16 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function getUserDataById($id)
+	{
+	    $this->db->query("SELECT userId, firstName, lastName, username, signUpDate, profilePic FROM users WHERE userId = :userId");
 
+	    $this->db->bind(':userId', $id);
+
+	    return $this->db->single();
+	}
+
+////////////////////////////////////////////////////////////////////////////
 
 	
 } // end class

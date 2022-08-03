@@ -171,7 +171,7 @@
             </li>
 
             <li class="sidebarListItem">
-              <a href="#" class="sidebarLink" title="Logout">
+              <a href="<?= URLROOT; ?>/users/logout" class="sidebarLink" title="Logout">
                 <img src="<?= URLROOT; ?>/assets/images/icons/logout.png" alt="logout icon">
                 <p class="hiddenSidebar">Logout</p>
               </a>

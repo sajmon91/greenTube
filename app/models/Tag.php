@@ -47,6 +47,18 @@ class Tag
 	    return $this->db->resultSet();
 	}
 
+////////////////////////////////////////////////////////////////////////////
+
+	public function getTagsByVideoId($id)
+	{
+	    $this->db->query("SELECT tagName FROM tags WHERE videoId = :videoId");
+
+	    $this->db->bind(':videoId', $id);
+
+	    return $this->db->resultSet();
+	}
+
+////////////////////////////////////////////////////////////////////////////
 
 	
 } // end class

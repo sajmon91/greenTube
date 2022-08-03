@@ -7,7 +7,7 @@
     <?php foreach($data as $video): ?>
 
       <div class="videoItem">
-        <a href="video.html">
+        <a href="<?= URLROOT; ?>/watch/<?= $video->videoId; ?>">
           <div class="videoThumbnail">
             <video muted class="videoPlay" poster="<?= URLROOT . "/" . $video->thumbPath; ?>">
               <source src="<?= URLROOT . "/" . $video->videoPath; ?>" type="video/mp4">
@@ -20,7 +20,7 @@
         <div class="videoDetails">
           <img src="<?= URLROOT . $video->profilePic; ?>" alt="user image">
           <div class="videoInfo">
-            <a href="video.html"><?= $video->title; ?></a>
+            <a href="<?= URLROOT; ?>/watch/<?= $video->videoId; ?>"><?= $video->title; ?></a>
             <p><?= $video->username; ?></p>
             <p><?= Formater::getFormattedNumber($video->views); ?> views &bull; <?= Formater::timeAgo($video->uploadDate); ?></p>
           </div>

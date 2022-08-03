@@ -50,7 +50,25 @@ class Formater
 
 /////////////////////////////////////////////////////////////////////////////
 
+	/**
+	 * format number - 1420 -> 1,420
+	 */
+	public static function numberFormat($number)
+	{
+		return number_format($number, 0, ",", ",");
+	}
 
+/////////////////////////////////////////////////////////////////////////////
+
+	/**
+	 * format date - 2022-07-31 17:29:43 -> 31 Jul 2022
+	 */
+	public static function dateFormat($date)
+	{
+		return date("j M Y", strtotime($date));
+	}
+
+/////////////////////////////////////////////////////////////////////////////
 
 
 

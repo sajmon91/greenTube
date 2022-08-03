@@ -14,7 +14,9 @@ class Tags extends Controller
 /////////////////////////////////////////////////////////////////
 
 	public function index($tagName)
-	{
+	{	
+		$tagName = filter_var($tagName, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		
 		$videoIdByTagName = $this->tagModel->getVideoIdByTagName($tagName);
 
 		$videos = array_map(function($videoId){
