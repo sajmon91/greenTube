@@ -19,12 +19,19 @@ class Tags extends Controller
 		
 		$videoIdByTagName = $this->tagModel->getVideoIdByTagName($tagName);
 
+		$videosCount = $this->tagModel->getVideosCountByTag($tagName);
+
 		$videos = array_map(function($videoId){
 			return $this->videoModel->getVideosByTag($videoId->videoId);
 		}, $videoIdByTagName);
-		
 
-	    $this->view('tags/index', $videos);
+		$data = [
+			'tagName' => $tagName,
+			'videosCount' => $videosCount->count,
+			'videos' => $videos
+		];
+		
+	    $this->view('tags/index', $data);
 	}
 
 /////////////////////////////////////////////////////////////////

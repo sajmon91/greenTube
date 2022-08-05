@@ -2,9 +2,14 @@
 
 <main class="content">
 
+<div class="tagName">
+  <h3>#<?= $data['tagName']; ?></h3>
+  <p><?= $data['videosCount']; ?> videos</p>
+</div>
+
   <div class="listContent">
 
-    <?php foreach($data as $video): ?>
+    <?php foreach($data['videos'] as $video): ?>
 
       <div class="videoItem">
         <a href="<?= URLROOT; ?>/watch/<?= $video->videoId; ?>">

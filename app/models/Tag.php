@@ -60,6 +60,17 @@ class Tag
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function getVideosCountByTag($tagName)
+	{
+	    $this->db->query("SELECT COUNT(tagId) as count FROM tags WHERE tagName = :tagName");
+
+	    $this->db->bind(':tagName', $tagName);
+
+	    return $this->db->single();
+	}
+
+////////////////////////////////////////////////////////////////////////////
+
 	
 } // end class
 

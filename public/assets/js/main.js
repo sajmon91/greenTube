@@ -1,2 +1,3 @@
-import './commonActions.js';
-import './videoUpload.js';
+import "./commonActions.js";
+import "./videoUpload.js";
+import "./tagsPage.js";
