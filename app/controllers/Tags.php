@@ -26,6 +26,7 @@ class Tags extends Controller
 		}, $videoIdByTagName);
 
 		$data = [
+			'title' => "#{$tagName} - " . SITENAME,
 			'tagName' => $tagName,
 			'videosCount' => $videosCount->count,
 			'videos' => $videos
