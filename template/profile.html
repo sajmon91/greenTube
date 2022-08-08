@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/logo.png">
+  <link rel="stylesheet" href="assets/scss/style.css">
+  <title>Green Tube</title>
+</head>
+
+<body>
+
+  <nav class="nav">
+
+    <div class="nav__left">
+      <button class="menuIcon">
+        <img src="assets/images/icons/menu.png" alt="menu icon">
+      </button>
+      <a href="index.html" class="logo">
+        <img src="assets/images/icons/logo.png" alt="logo">
+        <h1>Green <span>Tube</span></h1>
+      </a>
+    </div>
+
+    <div class="nav__center">
+      <form action="#" method="POST">
+        <input type="text" class="searchBar" name="term" placeholder="Search...">
+        <button class="searchButton">
+          <img src="assets/images/icons/search.png" alt="search icon">
+        </button>
+      </form>
+    </div>
+
+    <div class="nav__right">
+
+      <!-- <a href="upload.html" title="Upload video" class="uploadBtn">
+        <img class="upload" src="assets/images/icons/upload-icon.png" alt="upload icon">
+      </a>
+
+
+      <div class="dropdown">
+        <button class="dropBtn" title='username'>
+          <img class="userIcon" src='assets/images/profilePictures/defaults/head_alizarin.png' class='profilePicture'>
+        </button>
+
+        <div class="dropdownContent">
+          <a href="profile.html"><img src="assets/images/icons/user-white.png" alt="user"> Profile</a>
+          <a href="dashboard.html"><img src="assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
+          <a href="settings.html"><img src="assets/images/icons/settings.png" alt="settings">Settings</a>
+          <a href="#"><img src="assets/images/icons/logout.png" alt="logout">Logout</a>
+        </div>
+      </div> -->
+
+
+      <a class="signInBtn" href="signIn.html">
+        <img src="assets/images/icons/user.png">Sign In
+      </a>
+    </div>
+
+  </nav>
+
+  <nav class="mobNav">
+    <ul class="mobNavList">
+      <li class="sidebarListItem">
+        <a href="index.html" class="sidebarLink">
+          <img src="assets/images/icons/home.png" alt="Home icon">
+          <p>Home</p>
+        </a>
+      </li>
+
+      <li class="sidebarListItem">
+        <a href="trending.html" class="sidebarLink">
+          <img src="assets/images/icons/trending.png" alt="trending icon">
+          <p>Trending</p>
+        </a>
+      </li>
+
+      <li class="sidebarListItem">
+        <a href="subscriptions.html" class="sidebarLink">
+          <img src="assets/images/icons/subscribe.png" alt="subscribe icon">
+          <p>Subscriptions</p>
+        </a>
+      </li>
+
+      <li class="sidebarListItem">
+        <a href="likedVideos.html" class="sidebarLink">
+          <img src="assets/images/icons/like.png" alt="like video icon">
+          <p>Liked Videos</p>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+
+  <div class="container">
+
+    <aside class="sidebar">
+
+      <div class="sidebar__top">
+        <ul class="sidebarList">
+
+          <li class="sidebarListItem">
+            <a href="index.html" class="sidebarLink" title="Home">
+              <img src="assets/images/icons/home.png" alt="Home icon">
+              <p class="hiddenSidebar">Home</p>
+            </a>
+          </li>
+
+          <li class="sidebarListItem">
+            <a href="trending.html" class="sidebarLink" title="Trending">
+              <img src="assets/images/icons/trending.png" alt="trending icon">
+              <p class="hiddenSidebar">Trending</p>
+            </a>
+          </li>
+
+          <li class="sidebarListItem">
+            <a href="subscriptions.html" class="sidebarLink" title="Subscriptions">
+              <img src="assets/images/icons/subscribe.png" alt="subscribe icon">
+              <p class="hiddenSidebar">Subscriptions</p>
+            </a>
+          </li>
+
+          <li class="sidebarListItem">
+            <a href="likedVideos.html" class="sidebarLink" title="Liked Videos">
+              <img src="assets/images/icons/like.png" alt="like video icon">
+              <p class="hiddenSidebar">Liked Videos</p>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
+      <hr>
+
+      <div class="sidebar__middle">
+        <h3 class="hiddenSidebar">subscribed</h3>
+        <ul class="sidebarList">
+
+          <li class="sidebarListItem">
+            <a href="profile.html" class="sidebarLink" title="username">
+              <img class="subsIcon" src="assets/images/profilePictures/defaults/head_carrot.png" alt="user icon">
+              <p class="hiddenSidebar">chanel name</p>
+            </a>
+          </li>
+
+          <li class="sidebarListItem">
+            <a href="profile.html" class="sidebarLink" title="username">
+              <img class="subsIcon" src="assets/images/profilePictures/defaults/head_amethyst.png" alt="user icon">
+              <p class="hiddenSidebar">username</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="sidebar__bottom">
+        <ul class="sidebarList">
+          <li class="sidebarListItem">
+            <a href="settings.html" class="sidebarLink" title="Settings">
+              <img src="assets/images/icons/settings.png" alt="settings icon">
+              <p class="hiddenSidebar">Settings</p>
+            </a>
+          </li>
+
+          <li class="sidebarListItem">
+            <a href="#" class="sidebarLink" title="Logout">
+              <img src="assets/images/icons/logout.png" alt="logout icon">
+              <p class="hiddenSidebar">Logout</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </aside>
+
+    <main class="content">
+
+      <div class="profileContent">
+
+        <div class="profile">
+          <img src="assets/images/coverPhotos/default-cover-photo.jpeg" alt="cover photo" class="profileCover">
+
+          <div class="profileInfo">
+            <div class="profileItem">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 469.33 469.33" fill="#fff">
+                <path
+                  d="M320 213.33c35.3 0 63.79-28.69 63.79-64 0-35.3-28.48-64-63.79-64-35.3 0-64 28.7-64 64 0 35.31 28.7 64 64 64zM149.33 213.33c35.31 0 63.79-28.69 63.79-64 0-35.3-28.48-64-63.79-64-35.3 0-64 28.7-64 64 0 35.31 28.7 64 64 64zM149.33 256C99.52 256 0 280.96 0 330.67V384h298.67v-53.33c0-49.71-99.52-74.67-149.34-74.67zM320 256c-6.19 0-13.12.43-20.59 1.17 24.75 17.82 41.92 41.82 41.92 73.5V384h128v-53.33c0-49.71-99.52-74.67-149.33-74.67z" />
+              </svg>
+              1,702
+            </div>
+            <div class="profileItem">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 469.33 469.33">
+                <path d="M234.67 170.67c-35.31 0-64 28.69-64 64s28.69 64 64 64 64-28.7 64-64-28.7-64-64-64z" />
+                <path
+                  d="M234.67 74.67C128 74.67 36.9 141 0 234.67c36.9 93.65 128 160 234.67 160 106.77 0 197.76-66.35 234.66-160-36.9-93.66-127.89-160-234.66-160zm0 266.66c-58.88 0-106.67-47.78-106.67-106.66S175.79 128 234.67 128s106.66 47.79 106.66 106.67-47.78 106.66-106.66 106.66z" />
+              </svg>
+              1,503
+            </div>
+            <div class="profileItem">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 475.43 475.43">
+                <path
+                  d="M306.9 164.57l78.9-86.2a7.83 7.83 0 001.56-8.36 8.36 8.36 0 00-7.3-4.7h-253.4s-3.13 0-3.13.52v-9.4a26.12 26.12 0 0021.94-27.7A28.73 28.73 0 00117.26 0a29.78 29.78 0 00-29.78 28.73 30.82 30.82 0 0020.37 27.7v411.16a7.84 7.84 0 0015.68 0V263.84h256.52c3.2.2 6.17-1.7 7.31-4.7a8.36 8.36 0 00-1.56-8.36l-78.9-86.2z" />
+              </svg>
+              Sep 21
+            </div>
+            <div class="profileItem">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 411.14 411.14">
+                <path
+                  d="M350.2 54.53H61.45C27.64 54.53 0 82.18 0 115.97v179.2c0 33.8 27.65 61.44 61.44 61.44H349.7c33.79 0 61.44-27.65 61.44-61.44v-179.2c.5-33.8-27.14-61.44-60.93-61.44zM287.75 210.7a11.96 11.96 0 01-3.58 3.59l-119.3 70.65a9.93 9.93 0 01-13.82-3.58 8.65 8.65 0 01-1.54-5.12V134.92c0-5.64 4.61-10.24 10.24-10.24 1.54 0 3.59.5 5.12 1.53l119.3 70.66c4.6 3.07 6.66 9.21 3.58 13.82z" />
+              </svg>
+              234
+            </div>
+          </div>
+          <div class="profileMenu">
+            <div class="profileAvatar">
+              <img class="profileImg" src="assets/images/profilePictures/defaults/head_carrot.png" alt="profile image">
+              <div class="profileName">Stefan Simonović</div>
+            </div>
+            <div class="menuItems">
+              <button data-tab-target="#videos" class="profileMenuLink active">Videos</button>
+              <button data-tab-target="#about" class="profileMenuLink">About</button>
+            </div>
+            <div class="subsButton">
+              <button class="follow">645,321</button>
+              <button class="follow subs">Subscribe</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="tabContent">
+
+          <div id="videos" data-tab-content class="active">
+
+            <div class="tabVideos">
+              <div class="videoItem">
+                <a href="video.html">
+                  <div class="videoThumbnail">
+                    <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail1.png">
+                      <source src="uploads/videos/video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="duration">
+                      <span>00:25</span>
+                    </div>
+                  </div>
+                </a>
+                <div class="videoDetails">
+                  <div class="videoInfo">
+                    <a href="video.html">Title of video</a>
+                    <p>20k views &bull; 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="videoItem">
+                <a href="video.html">
+                  <div class="videoThumbnail">
+                    <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail2.jpg">
+                      <source src="uploads/videos/video2.mp4" type="video/mp4">
+                    </video>
+                    <div class="duration">
+                      <span>00:25</span>
+                    </div>
+                  </div>
+                </a>
+                <div class="videoDetails">
+                  <div class="videoInfo">
+                    <a href="video.html">Title of video Lorem ipsum, dolor sit amet</a>
+                    <p>20k views &bull; 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="videoItem">
+                <a href="video.html">
+                  <div class="videoThumbnail">
+                    <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail3.jpg">
+                      <source src="uploads/videos/video3.mp4" type="video/mp4">
+                    </video>
+                    <div class="duration">
+                      <span>00:25</span>
+                    </div>
+                  </div>
+                </a>
+                <div class="videoDetails">
+                  <div class="videoInfo">
+                    <a href="video.html">Title of video</a>
+                    <p>20k views &bull; 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="videoItem">
+                <a href="video.html">
+                  <div class="videoThumbnail">
+                    <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail4.jpg">
+                      <source src="uploads/videos/video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="duration">
+                      <span>00:25</span>
+                    </div>
+                  </div>
+                </a>
+                <div class="videoDetails">
+                  <div class="videoInfo">
+                    <a href="video.html">Title of video</a>
+                    <p>20k views &bull; 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="videoItem">
+                <a href="video.html">
+                  <div class="videoThumbnail">
+                    <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail1.png">
+                      <source src="uploads/videos/video2.mp4" type="video/mp4">
+                    </video>
+                    <div class="duration">
+                      <span>00:25</span>
+                    </div>
+                  </div>
+                </a>
+                <div class="videoDetails">
+                  <div class="videoInfo">
+                    <a href="video.html">Title of video</a>
+                    <p>20k views &bull; 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="videoItem">
+                <a href="video.html">
+                  <div class="videoThumbnail">
+                    <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail2.jpg">
+                      <source src="uploads/videos/video3.mp4" type="video/mp4">
+                    </video>
+                    <div class="duration">
+                      <span>00:25</span>
+                    </div>
+                  </div>
+                </a>
+                <div class="videoDetails">
+                  <div class="videoInfo">
+                    <a href="video.html">Title of video</a>
+                    <p>20k views &bull; 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="videoItem">
+                <a href="video.html">
+                  <div class="videoThumbnail">
+                    <video muted class="videoPlay" poster="uploads/videos/thumbnails/thumbnail3.jpg">
+                      <source src="uploads/videos/video1.mp4" type="video/mp4">
+                    </video>
+                    <div class="duration">
+                      <span>00:25</span>
+                    </div>
+                  </div>
+                </a>
+                <div class="videoDetails">
+                  <div class="videoInfo">
+                    <a href="video.html">Title of video</a>
+                    <p>20k views &bull; 2 days ago</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div id="about" data-tab-content>
+            <div class="tabAbout">
+              <div class="tabDesc">
+                <h3>Description</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita tenetur dolore aspernatur explicabo
+                  totam autem corporis sit provident modi velit!</p>
+              </div>
+              <div class="tabDetails">
+                <h3>Details</h3>
+                <div class="values">
+                  <span>Name: Stefan Simonović</span>
+                  <span>Username: sajmon</span>
+                  <span>Subscribers: 2</span>
+                  <span>Total views: 17</span>
+                  <span>Sign up date: April 23, 2022</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

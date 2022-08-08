@@ -1,0 +1,118 @@
+/* settings page */
+@use "../abstracts" as a;
+
+.settingsContent {
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+
+  .settingsContainer {
+    width: 80%;
+    background-color: a.$nav-bg;
+    display: flex;
+    flex-direction: column;
+
+    .formSection {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+      border-bottom: 0.1rem solid a.$border-color;
+
+      h3 {
+        font-size: 2rem;
+        padding: 1rem 0;
+      }
+
+      .imgPro {
+        width: 20rem;
+        height: 20rem;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .imgCover {
+        height: 32rem;
+        width: 100%;
+        object-fit: cover;
+      }
+
+      .inputFile {
+        border: 0.1rem solid #fff;
+        display: inline-block;
+        padding: 0.6rem 1.2rem;
+        cursor: pointer;
+        margin: 2rem 0;
+        font-size: 1.4rem;
+        transition: all 0.3s;
+        border-radius: 0.5rem;
+
+        svg {
+          fill: #fff;
+          transition: all 0.3s;
+        }
+
+        &:hover {
+          background-color: a.$green;
+          border: 0.1rem solid #000;
+          color: #000;
+        }
+
+        &:hover svg {
+          fill: #000;
+        }
+      }
+
+      .formInput {
+        height: 5rem;
+        width: 95%;
+        background: a.$body-bg;
+        border: none;
+        font-size: 1.8rem;
+        font-weight: 300;
+        padding: 0 2rem;
+        color: #fff;
+        margin-bottom: 1rem;
+      }
+
+      textarea.formInput {
+        height: 20rem;
+        resize: vertical;
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        /* Change Autocomplete styles in Chrome*/
+        -webkit-text-fill-color: #fff;
+        box-shadow: 0 0 0rem 100rem a.$body-bg inset;
+      }
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .settingsContent .settingsContainer {
+    width: 90%;
+
+    .formSection {
+      .imgCover {
+        height: 15rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .settingsContent .settingsContainer {
+    width: 100%;
+
+    .formSection {
+      .imgPro {
+        width: 15rem;
+        height: 15rem;
+      }
+    }
+  }
+}

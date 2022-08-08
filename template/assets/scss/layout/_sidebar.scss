@@ -1,0 +1,79 @@
+/* sidebar */
+@use "../abstracts" as a;
+
+.sidebar {
+  width: 7.5rem;
+  background-color: a.$nav-bg;
+  @include a.flex(center, stretch, column);
+  height: calc(100vh - a.$nav-height);
+  overflow: hidden;
+  flex-shrink: 0;
+  padding-top: 1rem;
+  position: sticky;
+  top: a.$nav-height;
+  left: 0;
+  transition: width 0.2s ease-in-out;
+
+  hr {
+    width: 90%;
+    margin: 0.5rem 0;
+    border: none;
+    height: 0.1rem;
+    background-color: a.$green;
+  }
+
+  .hiddenSidebar {
+    opacity: 0;
+    width: 0;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  &.open {
+    width: 20rem;
+  }
+
+  &.open .hiddenSidebar {
+    opacity: 1;
+    width: 100%;
+  }
+
+  &__top,
+  &__middle,
+  &__bottom {
+    width: 100%;
+  }
+
+  &__middle {
+    flex-grow: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-bottom: 1rem;
+    scrollbar-color: a.$green a.$nav-bg;
+    scrollbar-width: thin;
+
+    h3 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      padding-left: 2rem;
+      margin: 0.5rem 0;
+    }
+
+    &::-webkit-scrollbar {
+      width: 0.5rem;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: a.$nav-bg;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: a.$green;
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  .sidebar {
+    display: none;
+  }
+}
