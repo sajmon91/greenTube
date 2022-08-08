@@ -42,7 +42,7 @@
         </a>
 
         <div class="dropdown">
-          <button class="dropBtn" title='<?= $_SESSION['username']; ?>'>
+          <button data-urlroot="<?= URLROOT; ?>" data-userId="<?= $_SESSION['user_id']; ?>" class="dropBtn" title='<?= $_SESSION['username']; ?>'>
             <img class="userIcon" src='<?= URLROOT . $_SESSION['profile_pic']; ?>' class='profilePicture'>
           </button>
 

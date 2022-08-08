@@ -20,14 +20,22 @@
         <div class="videoInfoBottom">
           <p class="viewCount"><?= Formater::numberFormat($data['video']->views); ?> Views &bull; <?= Formater::dateFormat($data['video']->uploadDate); ?></p>
           <div class="controls">
-            <button class="likeBtn" title="I like this">
-              <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
-              <span class="btnText">5</span>
+            <button data-videoid="<?= $data['video']->videoId; ?>" class="likeBtn videoLike" title="I like this">
+              <?php if($data['wasLikedVideo']) : ?>
+                <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
+              <?php else: ?>
+                <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
+              <?php endif; ?>
+              <span class="btnText"><?= $data['likes']; ?></span>
             </button>
 
-            <button class="dislikeBtn" title="I dislike this">
-              <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
-              <span class="btnText">2</span>
+            <button data-videoid="<?= $data['video']->videoId; ?>" class="dislikeBtn videoDislike" title="I dislike this">
+              <?php if($data['wasDislikedVideo']) : ?>
+                <img src="<?= URLROOT; ?>/assets/images/icons/dislike-active.png" alt="dislike button">
+              <?php else: ?>
+                <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
+              <?php endif; ?>
+              <span class="btnText"><?= $data['dislikes']; ?></span>
             </button>
           </div>
         </div>
