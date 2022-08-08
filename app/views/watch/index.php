@@ -26,7 +26,7 @@
               <?php else: ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
               <?php endif; ?>
-              <span class="btnText"><?= $data['likes']; ?></span>
+              <span class="btnText"><?= Formater::numberFormat($data['likes']); ?></span>
             </button>
 
             <button data-videoid="<?= $data['video']->videoId; ?>" class="dislikeBtn videoDislike" title="I dislike this">
@@ -35,7 +35,7 @@
               <?php else: ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
               <?php endif; ?>
-              <span class="btnText"><?= $data['dislikes']; ?></span>
+              <span class="btnText"><?= Formater::numberFormat($data['dislikes']); ?></span>
             </button>
           </div>
         </div>

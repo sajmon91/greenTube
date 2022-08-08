@@ -62,7 +62,9 @@ class Like
       $this->db->bind(':userId', $userId);
       $this->db->bind(':videoId', $videoId);
 
-      $this->db->execute();
+      $row = $this->db->single();
+
+      return $this->db->rowCount();
   }
 
 ////////////////////////////////////////////////////////////////////////////

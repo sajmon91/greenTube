@@ -95,6 +95,45 @@ class Watch extends Controller
 
 /////////////////////////////////////////////////////////////////
 
+	public function dislike()
+	{
+	    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+		if($contentType === "application/json"){
+
+		    $content = trim(file_get_contents('php://input'));
+
+		    $videoId = (int)json_decode($content);
+		    $userId = $_SESSION['user_id'];
+
+		    if ($this->dislikeModel->wasVideoDislikedBy($userId, $videoId)) {
+
+		    	$this->dislikeModel->deleteVideoDislike($userId, $videoId);
+
+		    	$result = [
+		    		'likes' => 0,
+		    		'dislikes' => -1
+		    	];
+
+	    		echo json_encode($result);
+
+		    }else{
+		    	
+		    	$count = $this->likeModel->deleteVideoLike($userId, $videoId);
+
+		    	$this->dislikeModel->insertVideoDislike($userId, $videoId);
+
+		    	$result = [
+		    		'likes' => 0 - $count,
+		    		'dislikes' => 1
+		    	];
+
+		    	echo json_encode($result);
+		    }
+		}
+	}
+
+/////////////////////////////////////////////////////////////////
 
 
 

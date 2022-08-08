@@ -54,6 +54,19 @@ class Dislike
       return ($this->db->rowCount() > 0) ? true : false;
   }
 
+////////////////////////////////////////////////////////////////////////////
+
+  public function insertVideoDislike($userId, $videoId)
+  {
+      $this->db->query("INSERT INTO dislikes(userId, videoId) VALUES(:userId, :videoId)");
+
+      $this->db->bind(':userId', $userId);
+      $this->db->bind(':videoId', $videoId);
+
+      $this->db->execute();
+  }
+
+////////////////////////////////////////////////////////////////////////////
 
 
 	
