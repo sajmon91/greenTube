@@ -1,5 +1,5 @@
-const userIdData = document.querySelector('.dropdown button');
-const userId = (userIdData) ? userIdData.dataset.userid : null;
+export const userIdData = document.querySelector('.dropdown button');
+export const userId = (userIdData) ? userIdData.dataset.userid : null;
 const videoLikeBtn = document.querySelector('.videoLike');
 const videoDislikeBtn = document.querySelector('.videoDislike');
 

@@ -7,6 +7,7 @@ class Watch extends Controller
 	private $userModel;
 	private $likeModel;
 	private $dislikeModel;
+	private $subscriberModel;
 
 	public function __construct()
 	{
@@ -15,6 +16,7 @@ class Watch extends Controller
 	    $this->userModel = $this->model('User');
 	    $this->likeModel = $this->model('Like');
 	    $this->dislikeModel = $this->model('Dislike');
+	    $this->subscriberModel = $this->model('Subscriber');
 	}
 
 /////////////////////////////////////////////////////////////////
@@ -34,7 +36,10 @@ class Watch extends Controller
 		$wasLikedVideo = $this->likeModel->wasLikedBy($_SESSION['user_id'] ?? null, $videoId);
 		$wasDislikedVideo = $this->dislikeModel->wasVideoDislikedBy($_SESSION['user_id'] ?? null, $videoId);
 
+		$subsCount = $this->subscriberModel->getSubscriberCount($user->userId);
+		$isSubscribedTo = $this->subscriberModel->isSubscribedTo($user->userId, $_SESSION['user_id'] ?? null);
 
+		var_dump($isSubscribedTo);
 		
 		// init data
 		$data = [
@@ -46,7 +51,9 @@ class Watch extends Controller
 			'likes' => $likes,
 			'dislikes' => $dislikes,
 			'wasLikedVideo' => $wasLikedVideo,
-			'wasDislikedVideo' => $wasDislikedVideo
+			'wasDislikedVideo' => $wasDislikedVideo,
+			'subsCount' => $subsCount,
+			'isSubscribedTo' => $isSubscribedTo
 		];
 
 		// load view

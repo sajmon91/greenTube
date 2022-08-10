@@ -26,7 +26,7 @@
               <?php else: ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
               <?php endif; ?>
-              <span class="btnText"><?= Formater::numberFormat($data['likes']); ?></span>
+              <span class="btnText"><?= $data['likes']; ?></span>
             </button>
 
             <button data-videoid="<?= $data['video']->videoId; ?>" class="dislikeBtn videoDislike" title="I dislike this">
@@ -35,7 +35,7 @@
               <?php else: ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
               <?php endif; ?>
-              <span class="btnText"><?= Formater::numberFormat($data['dislikes']); ?></span>
+              <span class="btnText"><?= $data['dislikes']; ?></span>
             </button>
           </div>
         </div>
@@ -49,11 +49,11 @@
         </a>
         <div>
           <a href="profile.html">
-            <p> <?= $data['user']->username; ?></p>
+            <p><?= $data['user']->username; ?></p>
           </a>
-          <span>100k Subscribers</span>
+          <span><?= $data['subsCount']; ?> Subscribers</span>
         </div>
-        <button class="subscribeBtn">Subscribe</button>
+        <button class="subscribeBtn <?= (($data['isSubscribedTo']) ? 'unsubscribe' : 'subscribe'); ?>"><?= (($data['isSubscribedTo']) ? 'Subscribed' : 'Subscribe'); ?></button>
       </div>
 
       <div class="videoDescription">

@@ -108,10 +108,17 @@
         font-weight: 600;
         font-size: 1.4rem;
         letter-spacing: 0.1rem;
+        border: 0.2rem solid transparent;
         transition: filter 0.2s ease-in-out;
 
         &:hover {
           filter: brightness(85%);
+        }
+
+        &.unsubscribe {
+          background-color: transparent;
+          color: a.$green;
+          border-color: a.$green;
         }
       }
     }

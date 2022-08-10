@@ -880,10 +880,16 @@ main.content {
   font-weight: 600;
   font-size: 1.4rem;
   letter-spacing: 0.1rem;
+  border: 0.2rem solid transparent;
   transition: filter 0.2s ease-in-out;
 }
 .videoContent .playVideo .publisher .subscribeBtn:hover {
   filter: brightness(85%);
+}
+.videoContent .playVideo .publisher .subscribeBtn.unsubscribe {
+  background-color: transparent;
+  color: #1dd320;
+  border-color: #1dd320;
 }
 .videoContent .playVideo .videoDescription {
   padding-left: 5rem;
