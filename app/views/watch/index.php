@@ -51,9 +51,14 @@
           <a href="profile.html">
             <p><?= $data['user']->username; ?></p>
           </a>
-          <span><?= $data['subsCount']; ?> Subscribers</span>
+          <span><?= Formater::getFormattedNumber($data['subsCount']); ?> Subscribers</span>
         </div>
-        <button class="subscribeBtn <?= (($data['isSubscribedTo']) ? 'unsubscribe' : 'subscribe'); ?>"><?= (($data['isSubscribedTo']) ? 'Subscribed' : 'Subscribe'); ?></button>
+
+        <?php if($data['isMyVideo']): ?>
+          <p>edit video btn here</p>
+        <?php else: ?>
+          <button data-subId="<?= $data['user']->userId; ?>" class="subscribeBtn <?= (($data['isSubscribedTo']) ? 'unsubscribe' : 'subscribe'); ?>"><?= (($data['isSubscribedTo']) ? 'Subscribed' : 'Subscribe'); ?></button>
+        <?php endif; ?>
       </div>
 
       <div class="videoDescription">

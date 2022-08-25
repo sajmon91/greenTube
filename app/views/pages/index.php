@@ -1,4 +1,4 @@
-<?php $this->view('inc/header'); ?>
+<?php $this->view('inc/header', $data); ?>
 
 <main class="content">
 

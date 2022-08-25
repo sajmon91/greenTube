@@ -39,7 +39,13 @@ class Watch extends Controller
 		$subsCount = $this->subscriberModel->getSubscriberCount($user->userId);
 		$isSubscribedTo = $this->subscriberModel->isSubscribedTo($user->userId, $_SESSION['user_id'] ?? null);
 
-		var_dump($isSubscribedTo);
+		$isMyVideo = (($_SESSION['user_id'] ?? null) === $user->userId) ? true : false;
+
+		$subs = $this->subscriberModel->getSubscriptions();
+
+		if ($video->privacy && !$isMyVideo) {
+			redirect('');
+		}
 		
 		// init data
 		$data = [
@@ -53,7 +59,9 @@ class Watch extends Controller
 			'wasLikedVideo' => $wasLikedVideo,
 			'wasDislikedVideo' => $wasDislikedVideo,
 			'subsCount' => $subsCount,
-			'isSubscribedTo' => $isSubscribedTo
+			'isSubscribedTo' => $isSubscribedTo,
+			'isMyVideo' => $isMyVideo,
+			'subs' => $subs
 		];
 
 		// load view

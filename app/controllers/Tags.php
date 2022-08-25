@@ -4,11 +4,13 @@ class Tags extends Controller
 {
 	private $videoModel;
 	private $tagModel;
+	private $subscriberModel;
 
 	public function __construct()
 	{
 	    $this->videoModel = $this->model('Video');
 	    $this->tagModel = $this->model('Tag');
+	    $this->subscriberModel = $this->model('Subscriber');
 	}
 
 /////////////////////////////////////////////////////////////////
@@ -25,11 +27,14 @@ class Tags extends Controller
 			return $this->videoModel->getVideosByTag($videoId->videoId);
 		}, $videoIdByTagName);
 
+		$subs = $this->subscriberModel->getSubscriptions();
+
 		$data = [
 			'title' => "#{$tagName} - " . SITENAME,
 			'tagName' => $tagName,
 			'videosCount' => $videosCount->count,
-			'videos' => $videos
+			'videos' => $videos,
+			'subs' => $subs
 		];
 		
 	    $this->view('tags/index', $data);

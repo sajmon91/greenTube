@@ -145,19 +145,17 @@
           <h3 class="hiddenSidebar">subscribed</h3>
           <ul class="sidebarList">
 
-            <li class="sidebarListItem">
-              <a href="profile.html" class="sidebarLink" title="username">
-                <img class="subsIcon" src="<?= URLROOT; ?>/assets/images/profilePictures/defaults/head_carrot.png" alt="user icon">
-                <p class="hiddenSidebar">chanel name</p>
-              </a>
-            </li>
+            <?php foreach ($data['subs'] as $sub) : ?>
 
-            <li class="sidebarListItem">
-              <a href="profile.html" class="sidebarLink" title="username">
-                <img class="subsIcon" src="<?= URLROOT; ?>/assets/images/profilePictures/defaults/head_amethyst.png" alt="user icon">
-                <p class="hiddenSidebar">username</p>
-              </a>
-            </li>
+              <li class="sidebarListItem">
+                <a href="profile.html" class="sidebarLink" title="<?= $sub->username; ?>">
+                  <img class="subsIcon" src="<?= URLROOT . $sub->profilePic; ?>" alt="user icon">
+                  <p class="hiddenSidebar"><?= $sub->username; ?></p>
+                </a>
+              </li>
+
+            <?php endforeach; ?>
+
           </ul>
         </div>
 

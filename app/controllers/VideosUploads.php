@@ -6,6 +6,7 @@
 class VideosUploads extends Controller
 {
 	private $categoryModel;
+	private $subscriberModel;
 
 ////////////////////////////////////////////////////////////////////
 	
@@ -16,6 +17,7 @@ class VideosUploads extends Controller
 		}
 		
 	    $this->categoryModel = $this->model('Category');
+	    $this->subscriberModel = $this->model('Subscriber');
 	}
 
 ////////////////////////////////////////////////////////////////////
@@ -23,10 +25,12 @@ class VideosUploads extends Controller
 	public function index()
 	{
 		$categories = $this->categoryModel->getAll();
+		$subs = $this->subscriberModel->getSubscriptions();
 
 		$data = [
 			'title' => 'Upload Video',
-			'categories' => $categories
+			'categories' => $categories,
+			'subs' => $subs
 		];
 
 	    $this->view('uploads/index', $data);
