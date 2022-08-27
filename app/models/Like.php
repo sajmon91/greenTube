@@ -69,6 +69,17 @@ class Like
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function getCommentLikes($commId)
+  {
+      $this->db->query("SELECT likeId FROM likes WHERE commentId = :id");
+
+      $this->db->bind(':id', $commId);
+
+      $this->db->execute();
+
+      return $this->db->rowCount();
+  }
+
 
 	
 } // end class

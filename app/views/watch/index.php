@@ -71,7 +71,7 @@
         <div class="commentSection">
           <div class="commentHeader">
             <div class="commentCount">
-              <p>22 Comments</p>
+              <p><?= $data['totalComm']; ?> <?= ($data['totalComm'] > 1 ? 'Comments' : 'Comment'); ?></p>
             </div>
             <div class="commentForm">
               <a href="profile.html">
@@ -89,66 +89,42 @@
 
           <div class="comments">
 
-            <div class="commentWrapper">
-              <a href="profile.html">
-                <img class="profilePicture" src="assets/images/profilePictures/defaults/head_green_sea.png"
-                  alt="user image">
-              </a>
-              <div class="comment">
-                <h3><a href="profile.html">John Smith</a> <span> 2 days ago</span></h3>
-                <div class="postedCommentBody">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate,
-                  atque!</div>
-                <div class="controls">
-                  <button class="likeBtn" title="I like this">
-                    <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
-                    <span class="btnText">5</span>
-                  </button>
+            <?php foreach($data['comments'] as $comm) : ?>
 
-                  <button class="dislikeBtn" title="I dislike this">
-                    <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
-                    <span class="btnText">2</span>
-                  </button>
+              <div class="commentWrapper">
+                <a href="profile.html">
+                  <img class="profilePicture" src="<?= URLROOT . $comm['com']->profilePic; ?>"
+                    alt="user image">
+                </a>
+                <div class="comment">
+                  <h3><a href="profile.html"><?= $comm['com']->username; ?></a> <span> <?= Formater::timeAgo($comm['com']->datePosted); ?></span></h3>
+                  <div class="postedCommentBody"><?= $comm['com']->body; ?></div>
+                  <div class="controls">
+                    <button class="likeBtn" title="I like this">
+                      <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
+                      <span class="btnText"><?= ($comm['likes'] == 0) ? '' : $comm['likes']; ?></span>
+                    </button>
 
-                  <button class="replyBtn">
-                    <span class="btnText">Reply</span>
-                  </button>
+                    <button class="dislikeBtn" title="I dislike this">
+                      <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
+                      <span class="btnText"><?= ($comm['dislikes'] == 0) ? '' : $comm['dislikes']; ?></span>
+                    </button>
 
-                  <button class="viewReplies">
-                    <span class="btnText">View all 2 replies</span>
-                  </button>
+                    <button class="replyBtn">
+                      <span class="btnText">Reply</span>
+                    </button>
+
+                    <?php if ($comm['replies'] !== 0) :?>
+                      <button class="viewReplies">
+                        <span class="btnText">View all <?= $comm['replies']; ?> replies</span>
+                      </button>
+                    <?php endif; ?>
+
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div class="commentWrapper">
-              <a href="profile.html">
-                <img class="profilePicture" src="assets/images/profilePictures/defaults/head_pumpkin.png"
-                  alt="user image">
-              </a>
-              <div class="comment">
-                <h3><a href="profile.html">John Smith</a> <span> 2 days ago</span></h3>
-                <div class="postedCommentBody">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Cupiditate,Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium voluptates
-                  repellendus, tempore aspernatur suscipit at.
-                  atque!</div>
-                <div class="controls">
-                  <button class="likeBtn" title="I like this">
-                    <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
-                    <span class="btnText">5</span>
-                  </button>
-
-                  <button class="dislikeBtn" title="I dislike this">
-                    <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
-                    <span class="btnText">2</span>
-                  </button>
-
-                  <button class="replyBtn">
-                    <span class="btnText">Reply</span>
-                  </button>
-
-                </div>
-              </div>
-            </div>
+            <?php endforeach; ?>
 
           </div>
 

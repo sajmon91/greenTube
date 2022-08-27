@@ -68,6 +68,17 @@ class Dislike
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function getCommentDislikes($commId)
+  {
+      $this->db->query("SELECT dislikeId FROM dislikes WHERE commentId = :id");
+
+      $this->db->bind(':id', $commId);
+
+      $this->db->execute();
+
+      return $this->db->rowCount();
+  }
+
 
 	
 } // end class

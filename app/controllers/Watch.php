@@ -8,6 +8,7 @@ class Watch extends Controller
 	private $likeModel;
 	private $dislikeModel;
 	private $subscriberModel;
+	private $commentModel;
 
 	public function __construct()
 	{
@@ -17,6 +18,7 @@ class Watch extends Controller
 	    $this->likeModel = $this->model('Like');
 	    $this->dislikeModel = $this->model('Dislike');
 	    $this->subscriberModel = $this->model('Subscriber');
+	    $this->commentModel = $this->model('Comment');
 	}
 
 /////////////////////////////////////////////////////////////////
@@ -43,6 +45,21 @@ class Watch extends Controller
 
 		$subs = $this->subscriberModel->getSubscriptions();
 
+		$numOfComm = $this->commentModel->getNumberOfComments($video->videoId);
+		$comments = $this->commentModel->getAllVideoComments($video->videoId);
+		$comms = array_map(function($el){
+			$comLikes = $this->likeModel->getCommentLikes($el->commentId);
+			$comDislikes = $this->dislikeModel->getCommentDislikes($el->commentId);
+			$numReplises = $this->commentModel->getNumberOfReplies($el->commentId);
+			return [
+				'com' => $el,
+				'likes' => $comLikes,
+				'dislikes' => $comDislikes,
+				'replies' => $numReplises
+			];
+		}, $comments);
+
+
 		if ($video->privacy && !$isMyVideo) {
 			redirect('');
 		}
@@ -61,8 +78,12 @@ class Watch extends Controller
 			'subsCount' => $subsCount,
 			'isSubscribedTo' => $isSubscribedTo,
 			'isMyVideo' => $isMyVideo,
-			'subs' => $subs
+			'subs' => $subs,
+			'totalComm' => $numOfComm,
+			'comments' => $comms
 		];
+
+		// var_dump($numOfComm);
 
 		// load view
 	    $this->view('watch/index', $data);
