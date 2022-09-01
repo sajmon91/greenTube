@@ -112,7 +112,7 @@
                       <span class="btnText"><?= ($comm['likes'] == 0) ? '' : $comm['likes']; ?></span>
                     </button>
 
-                    <button data-commid="<?= $comm['com']->commentId; ?>" class="dislikeBtn" title="I dislike this">
+                    <button data-commid="<?= $comm['com']->commentId; ?>" class="dislikeBtn commDislikeBtn" title="I dislike this">
                       <?php if($comm['wasDisliked']) : ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/dislike-active.png" alt="dislike button">
                       <?php else: ?>

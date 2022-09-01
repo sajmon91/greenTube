@@ -109,6 +109,20 @@ class Dislike
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function insertCommentDislike($userId, $commId)
+  {
+    $this->db->query("INSERT INTO dislikes(userId, commentId) VALUES(:userId, :commId)");
+
+    $this->db->bind(':userId', $userId);
+    $this->db->bind(':commId', $commId);
+
+    $this->db->execute();
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
 
 
 } // end class

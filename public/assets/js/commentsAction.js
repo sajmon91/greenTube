@@ -2,9 +2,11 @@ import { userIdData, userId, updateLikesValue } from "./likeDislikeVideo.js";
 
 const postCommentBtn = document.querySelector('.postComment');
 
-const likesButns = [...document.querySelectorAll('.commLikeBtn')];
+const likesBtns = [...document.querySelectorAll('.commLikeBtn')];
+const dislikesBtns = [...document.querySelectorAll('.commDislikeBtn')];
 
-// updateLikesValue(postCommentBtn , 1);
+const urlROOT = userIdData.dataset.urlroot;
+
 
 // post comment
 if (postCommentBtn) {
@@ -82,8 +84,8 @@ if (postCommentBtn) {
 }
 
 // like comment
-if (likesButns) {
-	likesButns.forEach(el => {
+if (likesBtns) {
+	likesBtns.forEach(el => {
 		el.addEventListener('click', () => {
 
 			if (!userId) {
@@ -95,9 +97,7 @@ if (likesButns) {
 			const dislikeBtn = el.nextElementSibling;
 			const likeBtnText = el.querySelector('.btnText');
 			const dislikeBtnText = dislikeBtn.querySelector('.btnText');
-			const urlROOT = userIdData.dataset.urlroot;
-
-			// console.log(commId, dislikeBtn, likeBtnText, dislikeBtnText, urlROOT);
+			
 
 			fetch('/greenTube/comments/commentLike', {
 				method: 'POST',
@@ -129,5 +129,52 @@ if (likesButns) {
 			.catch(err => console.error(err));
 		});
 	});
-	
+}
+
+
+// dislike comment
+if (dislikesBtns) {
+	dislikesBtns.forEach(el => {
+		el.addEventListener('click', () => {
+
+			if (!userId) {
+				Swal.fire('You must be signed in to perform this action', '', 'error');
+	      		return;
+			}
+
+			const commId = el.dataset.commid;
+			const likeBtn = el.previousElementSibling;
+			const dislikeBtnText = el.querySelector('.btnText');
+			const likeBtnText = likeBtn.querySelector('.btnText');
+
+			fetch('/greenTube/comments/commentDislike', {
+				method: 'POST',
+		        headers: {
+		          "Content-Type": "application/json"
+		        },
+		        body: JSON.stringify(commId)
+			})
+			.then(response => {
+				if (!response.ok) {
+		          throw new Error();
+		        }
+		        return response.json();
+			})
+			.then(data => {
+
+				updateLikesValue(likeBtnText, data.likes);
+				updateLikesValue(dislikeBtnText, data.dislikes);
+
+				if (data.dislikes < 0) {
+					el.querySelector('img').src = `${urlROOT}/assets/images/icons/dislike.png`;
+				}else{
+					el.querySelector('img').src = `${urlROOT}/assets/images/icons/dislike-active.png`;
+				}
+
+				likeBtn.querySelector('img').src = `${urlROOT}/assets/images/icons/like.png`;
+
+			})
+			.catch(err => console.error(err));
+		});
+	});
 }

@@ -92,6 +92,46 @@ class Comments extends Controller
 
 /////////////////////////////////////////////////////////////////
 
+	public function commentDislike()
+	{
+	    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+		if ($contentType === "application/json") {
+
+			$content = trim(file_get_contents('php://input'));
+			$decode = json_decode($content);
+
+			$userId = $_SESSION['user_id'];
+		    $commId = (int) trim(filter_var($decode, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+		 	if ($this->dislikeModel->wasCommDislikedBy($userId, $commId)) {
+		 		
+		 		$this->dislikeModel->deleteCommentDislike($userId, $commId);
+
+		    	$result = [
+		    		'likes' => 0,
+		    		'dislikes' => -1
+		    	];
+
+	    		echo json_encode($result);
+
+		 	}else{
+		 		
+		 		$count = $this->likeModel->deleteCommentLike($userId, $commId);
+
+		    	$this->dislikeModel->insertCommentDislike($userId, $commId);
+
+		    	$result = [
+		    		'likes' => 0 - $count,
+		    		'dislikes' => 1
+		    	];
+
+		    	echo json_encode($result);
+		 	}
+		}
+	}
+
+/////////////////////////////////////////////////////////////////
 
 
 

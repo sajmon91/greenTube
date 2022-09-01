@@ -88,8 +88,6 @@ class Watch extends Controller
 			'comments' => $comms
 		];
 
-		// var_dump($data['comments']);
-
 		// load view
 	    $this->view('watch/index', $data);
 	}
