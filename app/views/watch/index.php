@@ -102,7 +102,8 @@
                   <h3><a href="profile.html"><?= $comm['com']->username; ?></a> <span> <?= Formater::timeAgo($comm['com']->datePosted); ?></span></h3>
                   <div class="postedCommentBody"><?= $comm['com']->body; ?></div>
                   <div class="controls">
-                    <button class="likeBtn" title="I like this">
+
+                    <button data-commid="<?= $comm['com']->commentId; ?>" class="likeBtn commLikeBtn" title="I like this">
                       <?php if($comm['wasLiked']) : ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
                       <?php else: ?>
@@ -111,7 +112,7 @@
                       <span class="btnText"><?= ($comm['likes'] == 0) ? '' : $comm['likes']; ?></span>
                     </button>
 
-                    <button class="dislikeBtn" title="I dislike this">
+                    <button data-commid="<?= $comm['com']->commentId; ?>" class="dislikeBtn" title="I dislike this">
                       <?php if($comm['wasDisliked']) : ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/dislike-active.png" alt="dislike button">
                       <?php else: ?>

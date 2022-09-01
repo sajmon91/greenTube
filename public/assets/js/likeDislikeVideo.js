@@ -55,7 +55,7 @@ if (videoLikeBtn) {
 }
 
 
-function updateLikesValue(element, num){
+export function updateLikesValue(element, num){
 	const likesCountVal = element.textContent || 0;
 	element.textContent = parseInt(likesCountVal) + parseInt(num);
 };

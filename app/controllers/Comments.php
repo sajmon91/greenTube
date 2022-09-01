@@ -3,10 +3,14 @@
 class Comments extends Controller
 {
 	private $commentModel;
+	private $likeModel;
+	private $dislikeModel;
 
 	public function __construct()
 	{
 	    $this->commentModel = $this->model('Comment');
+	    $this->likeModel = $this->model('Like');
+	    $this->dislikeModel = $this->model('Dislike');
 	}
 
 /////////////////////////////////////////////////////////////////
@@ -47,6 +51,46 @@ class Comments extends Controller
 
 /////////////////////////////////////////////////////////////////
 
+	public function commentLike()
+	{
+	    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+		if ($contentType === "application/json") {
+
+			$content = trim(file_get_contents('php://input'));
+			$decode = json_decode($content);
+
+			$userId = $_SESSION['user_id'];
+		    $commId = (int) trim(filter_var($decode, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+		 	if ($this->likeModel->wasCommLikedBy($userId, $commId)) {
+		 		
+		 		$this->likeModel->deleteCommentLike($userId, $commId);
+
+		    	$result = [
+		    		'likes' => -1,
+		    		'dislikes' => 0
+		    	];
+
+	    		echo json_encode($result);
+
+		 	}else{
+		 		
+		 		$count = $this->dislikeModel->deleteCommentDislike($userId, $commId);
+
+		    	$this->likeModel->insertCommentLike($userId, $commId);
+
+		    	$result = [
+		    		'likes' => 1,
+		    		'dislikes' => 0 - $count
+		    	];
+
+		    	echo json_encode($result);
+		 	}
+		}
+	}
+
+/////////////////////////////////////////////////////////////////
 
 
 

@@ -1,8 +1,12 @@
-import { userIdData, userId} from "./likeDislikeVideo.js";
+import { userIdData, userId, updateLikesValue } from "./likeDislikeVideo.js";
 
 const postCommentBtn = document.querySelector('.postComment');
 
+const likesButns = [...document.querySelectorAll('.commLikeBtn')];
 
+// updateLikesValue(postCommentBtn , 1);
+
+// post comment
 if (postCommentBtn) {
 	postCommentBtn.addEventListener('click', () => {
 
@@ -75,4 +79,55 @@ if (postCommentBtn) {
 		.catch(err => console.error(err));
 		
 	});
+}
+
+// like comment
+if (likesButns) {
+	likesButns.forEach(el => {
+		el.addEventListener('click', () => {
+
+			if (!userId) {
+				Swal.fire('You must be signed in to perform this action', '', 'error');
+	      		return;
+			}
+
+			const commId = el.dataset.commid;
+			const dislikeBtn = el.nextElementSibling;
+			const likeBtnText = el.querySelector('.btnText');
+			const dislikeBtnText = dislikeBtn.querySelector('.btnText');
+			const urlROOT = userIdData.dataset.urlroot;
+
+			// console.log(commId, dislikeBtn, likeBtnText, dislikeBtnText, urlROOT);
+
+			fetch('/greenTube/comments/commentLike', {
+				method: 'POST',
+		        headers: {
+		          "Content-Type": "application/json"
+		        },
+		        body: JSON.stringify(commId)
+			})
+			.then(response => {
+				if (!response.ok) {
+		          throw new Error();
+		        }
+		        return response.json();
+			})
+			.then(data => {
+
+				updateLikesValue(likeBtnText, data.likes);
+				updateLikesValue(dislikeBtnText, data.dislikes);
+
+				if (data.likes < 0) {
+					el.querySelector('img').src = `${urlROOT}/assets/images/icons/like.png`;
+				}else{
+					el.querySelector('img').src = `${urlROOT}/assets/images/icons/like-active.png`;
+				}
+
+				dislikeBtn.querySelector('img').src = `${urlROOT}/assets/images/icons/dislike.png`;
+
+			})
+			.catch(err => console.error(err));
+		});
+	});
+	
 }

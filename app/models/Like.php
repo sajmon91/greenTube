@@ -96,6 +96,32 @@ class Like
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function insertCommentLike($userId, $commId)
+  {
+    $this->db->query("INSERT INTO likes(userId, commentId) VALUES(:userId, :commId)");
+
+    $this->db->bind(':userId', $userId);
+    $this->db->bind(':commId', $commId);
+
+    $this->db->execute();
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+  public function deleteCommentLike($userId, $commId)
+  {
+      $this->db->query("DELETE FROM likes WHERE userId = :userId AND commentId = :commId");
+
+      $this->db->bind(':userId', $userId);
+      $this->db->bind(':commId', $commId);
+
+      $row = $this->db->single();
+
+      return $this->db->rowCount();
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
 
 
 
