@@ -51,11 +51,16 @@ class Watch extends Controller
 			$comLikes = $this->likeModel->getCommentLikes($el->commentId);
 			$comDislikes = $this->dislikeModel->getCommentDislikes($el->commentId);
 			$numReplises = $this->commentModel->getNumberOfReplies($el->commentId);
+			$wasLikedComm = $this->likeModel->wasCommLikedBy($_SESSION['user_id'] ?? null, $el->commentId);
+			$wasDislikedComm = $this->dislikeModel->wasCommDislikedBy($_SESSION['user_id'] ?? null, $el->commentId);
+
 			return [
 				'com' => $el,
 				'likes' => $comLikes,
 				'dislikes' => $comDislikes,
-				'replies' => $numReplises
+				'replies' => $numReplises,
+				'wasLiked' => $wasLikedComm,
+				'wasDisliked' => $wasDislikedComm
 			];
 		}, $comments);
 
@@ -82,8 +87,6 @@ class Watch extends Controller
 			'totalComm' => $numOfComm,
 			'comments' => $comms
 		];
-
-		// var_dump($numOfComm);
 
 		// load view
 	    $this->view('watch/index', $data);

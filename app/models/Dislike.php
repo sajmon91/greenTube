@@ -79,8 +79,25 @@ class Dislike
       return $this->db->rowCount();
   }
 
+////////////////////////////////////////////////////////////////////////////
 
-	
+  public function wasCommDislikedBy($userId, $commId)
+  {
+    $this->db->query("SELECT dislikeId FROM dislikes WHERE userId = :userId AND commentId = :commId");
+
+    $this->db->bind(':userId', $userId);
+    $this->db->bind(':commId', $commId);
+
+    $row = $this->db->single();
+
+    return ($this->db->rowCount() > 0) ? true : false;
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
 } // end class
 
 

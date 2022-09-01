@@ -80,6 +80,26 @@ class Like
       return $this->db->rowCount();
   }
 
+////////////////////////////////////////////////////////////////////////////
+
+  public function wasCommLikedBy($userId, $commId)
+  {
+    $this->db->query("SELECT likeId FROM likes WHERE userId = :userId AND commentId = :commId");
+
+    $this->db->bind(':userId', $userId);
+    $this->db->bind(':commId', $commId);
+
+    $row = $this->db->single();
+
+    return ($this->db->rowCount() > 0) ? true : false;
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 
 	
 } // end class

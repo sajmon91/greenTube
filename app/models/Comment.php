@@ -50,6 +50,19 @@ class Comment
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function insertComment($userId, $videoId, $commBody, $datePosted)
+  {
+      $this->db->query("INSERT INTO comments(postedBy, videoId, body, datePosted) VALUES(:userId, :videoId, :commBody, :datePosted)");
+      $this->db->bind(':userId', $userId);
+      $this->db->bind(':videoId', $videoId);
+      $this->db->bind(':commBody', $commBody);
+      $this->db->bind(':datePosted', $datePosted);
+
+      $this->db->execute();
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
 
 	
 } // end class

@@ -67,6 +67,8 @@
 
       <hr>
 
+      <!-- comment section -->
+
       <?php if ($data['video']->comments) : ?>
         <div class="commentSection">
           <div class="commentHeader">
@@ -83,7 +85,7 @@
               </a>
               <textarea class="commentBody" placeholder="Add a comment..."></textarea>
 
-              <button class="postComment">Comment</button>
+              <button data-videoid="<?= $data['video']->videoId; ?>" class="postComment">Comment</button>
             </div>
           </div>
 
@@ -101,12 +103,20 @@
                   <div class="postedCommentBody"><?= $comm['com']->body; ?></div>
                   <div class="controls">
                     <button class="likeBtn" title="I like this">
-                      <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
+                      <?php if($comm['wasLiked']) : ?>
+                        <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
+                      <?php else: ?>
+                        <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
+                      <?php endif; ?>
                       <span class="btnText"><?= ($comm['likes'] == 0) ? '' : $comm['likes']; ?></span>
                     </button>
 
                     <button class="dislikeBtn" title="I dislike this">
-                      <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
+                      <?php if($comm['wasDisliked']) : ?>
+                        <img src="<?= URLROOT; ?>/assets/images/icons/dislike-active.png" alt="dislike button">
+                      <?php else: ?>
+                        <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
+                      <?php endif; ?>
                       <span class="btnText"><?= ($comm['dislikes'] == 0) ? '' : $comm['dislikes']; ?></span>
                     </button>
 
@@ -139,6 +149,8 @@
       <?php endif; ?>
 
     </div>
+
+    <!-- side bar -->
 
     <aside class="suggestions">
 
