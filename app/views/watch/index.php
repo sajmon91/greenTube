@@ -101,8 +101,8 @@
                 <div class="comment">
                   <h3><a href="profile.html"><?= $comm['com']->username; ?></a> <span> <?= Formater::timeAgo($comm['com']->datePosted); ?></span></h3>
                   <div class="postedCommentBody"><?= $comm['com']->body; ?></div>
-                  <div class="controls">
 
+                  <div class="controls">
                     <button data-commid="<?= $comm['com']->commentId; ?>" class="likeBtn commLikeBtn" title="I like this">
                       <?php if($comm['wasLiked']) : ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
@@ -126,12 +126,27 @@
                     </button>
 
                     <?php if ($comm['replies'] !== 0) :?>
-                      <button class="viewReplies">
+                      <button data-commid="<?= $comm['com']->commentId; ?>" data-urlroot="<?= URLROOT; ?>" class="viewReplies">
                         <span class="btnText">View all <?= $comm['replies']; ?> replies</span>
                       </button>
                     <?php endif; ?>
 
                   </div>
+<!-- ------------------------------------------------ -->
+                  <div class="replyForm hidden">
+                    <a href="profile.html">
+                      <?php if (isLoggedIn()) : ?>
+                        <img class="profilePicture" src="<?= URLROOT . $_SESSION['profile_pic']; ?>" alt="user">
+                      <?php else: ?>
+                        <img class="profilePicture" src="<?= URLROOT; ?>/assets/images/icons/user.png" alt="user">
+                      <?php endif; ?>
+                    </a>
+                    <textarea class="replyCommentBody" placeholder="Add a comment..."></textarea>
+
+                    <button class="cancelBtn">Cancel</button>
+                    <button data-commid="<?= $comm['com']->commentId; ?>" data-videoid="<?= $data['video']->videoId; ?>" class="postReplyComment">Reply</button>
+                  </div>
+
                 </div>
               </div>
 

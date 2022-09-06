@@ -63,6 +63,32 @@ class Comment
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function insertReplyComment($userId, $videoId, $commId, $commBody, $datePosted)
+  {
+      $this->db->query("INSERT INTO comments(postedBy, videoId, responseTo, body, datePosted) VALUES(:userId, :videoId, :commId, :commBody, :datePosted)");
+      $this->db->bind(':userId', $userId);
+      $this->db->bind(':videoId', $videoId);
+      $this->db->bind(':commId', $commId);
+      $this->db->bind(':commBody', $commBody);
+      $this->db->bind(':datePosted', $datePosted);
+
+      $this->db->execute();
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+  public function getReplies($commId)
+  {
+      $this->db->query("SELECT c.*, u.userId, u.username, u.profilePic FROM comments AS c LEFT JOIN users AS u ON c.postedBy = u.userId WHERE c.responseTo = :commId ORDER BY c.commentId DESC");
+
+      $this->db->bind(':commId', $commId);
+
+      return $this->db->resultSet();
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+
 
 	
 } // end class

@@ -133,6 +133,75 @@ class Comments extends Controller
 
 /////////////////////////////////////////////////////////////////
 
+	public function commentReply()
+	{
+	    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+		if ($contentType === "application/json") {
+
+			$content = trim(file_get_contents('php://input'));
+			$decode = json_decode($content);
+
+			$userId = $_SESSION['user_id'];
+			$videoId = (int) trim(filter_var($decode->videoId, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		    $commId = (int) trim(filter_var($decode->commId, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+		    $commBody = trim(filter_var($decode->commBody, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+		    $date = date("Y-m-d H:i:s");
+
+		    if (!empty($commBody)) {
+		    	$this->commentModel->insertReplyComment($userId, $videoId, $commId, $commBody, $date);
+
+		    	$data = [
+			    	'body' => $commBody,
+			    	'date' => Formater::timeAgo($date)
+			    ];
+
+			    echo json_encode($data);
+		    }
+		}
+	}
+
+/////////////////////////////////////////////////////////////////
+
+	public function getCommentReplies()
+	{
+	    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+
+		if ($contentType === "application/json") {
+
+			$content = trim(file_get_contents('php://input'));
+			$decode = json_decode($content);
+
+		    $commId = (int) trim(filter_var($decode, FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+		    $comms = $this->commentModel->getReplies($commId);
+
+		    $comments = array_map(function($el){
+				$comLikes = $this->likeModel->getCommentLikes($el->commentId);
+				$comDislikes = $this->dislikeModel->getCommentDislikes($el->commentId);
+				$wasLikedComm = $this->likeModel->wasCommLikedBy($_SESSION['user_id'] ?? null, $el->commentId);
+				$wasDislikedComm = $this->dislikeModel->wasCommDislikedBy($_SESSION['user_id'] ?? null, $el->commentId);
+
+				return [
+					'com' => $el,
+					'likes' => $comLikes,
+					'dislikes' => $comDislikes,
+					'wasLiked' => $wasLikedComm,
+					'wasDisliked' => $wasDislikedComm,
+					'date' => Formater::timeAgo($el->datePosted)
+				];
+			}, $comms);
+
+		    echo json_encode($comments);
+		    
+		}
+	}
+
+/////////////////////////////////////////////////////////////////
+
+
+
 
 
 

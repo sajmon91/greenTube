@@ -183,6 +183,7 @@
           }
 
           .comment {
+            width: 100%;
             h3 {
               font-size: 1.6rem;
               margin-bottom: 0.2rem;
@@ -221,6 +222,53 @@
                   &:hover {
                     filter: brightness(120%);
                   }
+                }
+              }
+            }
+
+            .replyForm {
+              display: flex;
+              align-items: center;
+              width: 100%;
+              margin-top: 1rem;
+
+              &.hidden {
+                display: none;
+              }
+
+              .replyCommentBody {
+                flex: 1;
+                border: none;
+                background-color: transparent;
+                font-size: 1.4rem;
+                color: #fff;
+                resize: none;
+                height: 3rem;
+              }
+
+              .cancelBtn {
+                font-size: 1.4rem;
+                color: a.$green;
+                margin-right: 1rem;
+                transition: filter 0.2s ease-in-out;
+
+                &:hover {
+                  filter: brightness(85%);
+                }
+              }
+
+              .postReplyComment {
+                background-color: a.$border-color;
+                padding: 0.7rem 1.5rem;
+                border-radius: 0.5rem;
+                font-size: 1.4rem;
+                color: #fff;
+                text-transform: uppercase;
+                letter-spacing: 0.1rem;
+                transition: filter 0.2s ease-in-out;
+
+                &:hover {
+                  filter: brightness(85%);
                 }
               }
             }
