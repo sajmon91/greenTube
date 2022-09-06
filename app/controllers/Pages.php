@@ -27,13 +27,26 @@ class Pages extends Controller
 			'subs' => $subs
 		];
 
-		// var_dump($data);
-
 	    $this->view('pages/index', $data);
 	}
 
 /////////////////////////////////////////////////////////////////
 
+	public function trending()
+	{
+	    $videos = $this->videoModel->getTrendingVideos();
+	    $subs = $this->subscriberModel->getSubscriptions();
+
+	    $data = [
+	    	'title' => "Trending - " . SITENAME,
+	    	'videos' => $videos,
+			'subs' => $subs
+	    ];
+
+	    $this->view('pages/trending', $data);
+	}
+
+/////////////////////////////////////////////////////////////////
 
 
 

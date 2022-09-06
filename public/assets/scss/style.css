@@ -595,6 +595,9 @@ main.content {
   font-size: 3rem;
   margin: 1rem;
 }
+.trendingContent .noTrending {
+  text-align: center;
+}
 .trendingContent .videoItem {
   width: 100%;
   height: 16rem;

@@ -76,7 +76,7 @@
       </li>
 
       <li class="sidebarListItem">
-        <a href="trending.html" class="sidebarLink">
+        <a href="<?= URLROOT; ?>/pages/trending" class="sidebarLink">
           <img src="<?= URLROOT; ?>/assets/images/icons/trending.png" alt="trending icon">
           <p>Trending</p>
         </a>
@@ -114,7 +114,7 @@
           </li>
 
           <li class="sidebarListItem">
-            <a href="trending.html" class="sidebarLink" title="Trending">
+            <a href="<?= URLROOT; ?>/pages/trending" class="sidebarLink" title="Trending">
               <img src="<?= URLROOT; ?>/assets/images/icons/trending.png" alt="trending icon">
               <p class="hiddenSidebar">Trending</p>
             </a>

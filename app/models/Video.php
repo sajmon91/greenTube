@@ -109,6 +109,14 @@ class Video
 
 //////////////////////////////////////////////////////////////////////////
 
+	public function getTrendingVideos()
+	{
+	    $this->db->query("SELECT v.videoId, v.title, v.description, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE v.uploadDate >= NOW() - INTERVAL 14 DAY AND v.privacy = 0  ORDER BY v.views DESC LIMIT 20");
+
+	    return $this->db->resultSet();
+	}
+
+//////////////////////////////////////////////////////////////////////////
 
 
 
