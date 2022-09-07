@@ -47,7 +47,7 @@
           </button>
 
           <div class="dropdownContent">
-            <a href="profile.html"><img src="<?= URLROOT; ?>/assets/images/icons/user-white.png" alt="user"> Profile</a>
+            <a href="<?= URLROOT; ?>/profiles/<?= $_SESSION['username']; ?>"><img src="<?= URLROOT; ?>/assets/images/icons/user-white.png" alt="user"> Profile</a>
             <a href="dashboard.html"><img src="<?= URLROOT; ?>/assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
             <a href="settings.html"><img src="<?= URLROOT; ?>/assets/images/icons/settings.png" alt="settings">Settings</a>
             <a href="<?= URLROOT; ?>/users/logout"><img src="<?= URLROOT; ?>/assets/images/icons/logout.png" alt="logout">Logout</a>
@@ -148,7 +148,7 @@
             <?php foreach ($data['subs'] as $sub) : ?>
 
               <li class="sidebarListItem">
-                <a href="profile.html" class="sidebarLink" title="<?= $sub->username; ?>">
+                <a href="<?= URLROOT; ?>/profiles/<?= $sub->username; ?>" class="sidebarLink" title="<?= $sub->username; ?>">
                   <img class="subsIcon" src="<?= URLROOT . $sub->profilePic; ?>" alt="user icon">
                   <p class="hiddenSidebar"><?= $sub->username; ?></p>
                 </a>

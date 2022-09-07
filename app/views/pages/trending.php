@@ -23,7 +23,7 @@
             </div>
             <div class="videoDetails">
               <a class="videoTitle" href="<?= URLROOT; ?>/watch/<?= $video->videoId; ?>"><?= $video->title; ?></a>
-              <p><a href="#"><?= $video->username; ?></a> - <?= Formater::getFormattedNumber($video->views); ?> views &bull; <?= Formater::timeAgo($video->uploadDate); ?></p>
+              <p><a href="<?= URLROOT; ?>/profiles/<?= $video->username; ?>"><?= $video->username; ?></a> - <?= Formater::getFormattedNumber($video->views); ?> views &bull; <?= Formater::timeAgo($video->uploadDate); ?></p>
               <p class="description"><?= substr($video->description,0,250) . (strlen($video->description) > 250 ? '...' : ''); ?></p>
             </div>
           </div>

@@ -33,7 +33,7 @@
           </a>
           <div class="videoDetails">
             <a class="videoTitle" href="<?= URLROOT; ?>/watch/<?= $video->videoId; ?>"><?= $video->title; ?></a>
-            <a title="<?= $video->username; ?>" class="channelName" href="profile.html"><?= $video->username; ?></a>
+            <a title="<?= $video->username; ?>" class="channelName" href="<?= URLROOT; ?>/profiles/<?= $video->username; ?>"><?= $video->username; ?></a>
           </div>
         </div>
 

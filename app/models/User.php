@@ -59,7 +59,7 @@ class User
 	{
 	    $date = date("Y-m-d H:i:s");
 
-	    $this->db->query('INSERT INTO users (firstName, lastName, username, email, password, signUpDate, profilePic) VALUES (:firstName, :lastName, :username, :email, :password, :signUpDate, :profilePic)');
+	    $this->db->query('INSERT INTO users (firstName, lastName, username, email, password, signUpDate, profilePic, coverPic) VALUES (:firstName, :lastName, :username, :email, :password, :signUpDate, :profilePic, :coverPic)');
 
 	    // bind values
 	    $this->db->bind(':firstName', $data['firstName']);
@@ -69,6 +69,7 @@ class User
 	    $this->db->bind(':password', $data['password']);
 	    $this->db->bind(':signUpDate', $date);
 	    $this->db->bind(':profilePic', $data['profilePic']);
+	    $this->db->bind(':coverPic', $data['coverPic']);
 
 	    // execute
 	    if ($this->db->execute()) {

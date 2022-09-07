@@ -44,11 +44,11 @@
       <hr>
 
       <div class="publisher">
-        <a href="profile.html">
+        <a href="<?= URLROOT; ?>/profiles/<?= $data['user']->username; ?>">
           <img class="profilePicture" src=" <?= URLROOT . $data['user']->profilePic; ?>" alt="user">
         </a>
         <div>
-          <a href="profile.html">
+          <a href="<?= URLROOT; ?>/profiles/<?= $data['user']->username; ?>">
             <p><?= $data['user']->username; ?></p>
           </a>
           <span><?= Formater::getFormattedNumber($data['subsCount']); ?> Subscribers</span>
@@ -76,13 +76,15 @@
               <p><?= $data['totalComm']; ?> <?= ($data['totalComm'] > 1 ? 'Comments' : 'Comment'); ?></p>
             </div>
             <div class="commentForm">
-              <a href="profile.html">
-                <?php if (isLoggedIn()) : ?>
+              
+              <?php if (isLoggedIn()) : ?>
+                <a href="<?= URLROOT; ?>/profiles/<?= $_SESSION['username']; ?>">
                   <img class="profilePicture" src="<?= URLROOT . $_SESSION['profile_pic']; ?>" alt="user">
-                <?php else: ?>
-                  <img class="profilePicture" src="<?= URLROOT; ?>/assets/images/icons/user.png" alt="user">
-                <?php endif; ?>
-              </a>
+                </a>
+              <?php else: ?>
+                <img class="profilePicture" src="<?= URLROOT; ?>/assets/images/icons/user.png" alt="user">
+              <?php endif; ?>
+              
               <textarea class="commentBody" placeholder="Add a comment..."></textarea>
 
               <button data-videoid="<?= $data['video']->videoId; ?>" class="postComment">Comment</button>
@@ -94,12 +96,12 @@
             <?php foreach($data['comments'] as $comm) : ?>
 
               <div class="commentWrapper">
-                <a href="profile.html">
+                <a href="<?= URLROOT; ?>/profiles/<?= $comm['com']->username; ?>">
                   <img class="profilePicture" src="<?= URLROOT . $comm['com']->profilePic; ?>"
                     alt="user image">
                 </a>
                 <div class="comment">
-                  <h3><a href="profile.html"><?= $comm['com']->username; ?></a> <span> <?= Formater::timeAgo($comm['com']->datePosted); ?></span></h3>
+                  <h3><a href="<?= URLROOT; ?>/profiles/<?= $comm['com']->username; ?>"><?= $comm['com']->username; ?></a> <span> <?= Formater::timeAgo($comm['com']->datePosted); ?></span></h3>
                   <div class="postedCommentBody"><?= $comm['com']->body; ?></div>
 
                   <div class="controls">
@@ -134,13 +136,15 @@
                   </div>
 <!-- ------------------------------------------------ -->
                   <div class="replyForm hidden">
-                    <a href="profile.html">
-                      <?php if (isLoggedIn()) : ?>
+                    
+                    <?php if (isLoggedIn()) : ?>
+                      <a href="<?= URLROOT; ?>/profiles/<?= $_SESSION['username']; ?>">
                         <img class="profilePicture" src="<?= URLROOT . $_SESSION['profile_pic']; ?>" alt="user">
-                      <?php else: ?>
-                        <img class="profilePicture" src="<?= URLROOT; ?>/assets/images/icons/user.png" alt="user">
-                      <?php endif; ?>
-                    </a>
+                      </a>
+                    <?php else: ?>
+                      <img class="profilePicture" src="<?= URLROOT; ?>/assets/images/icons/user.png" alt="user">
+                    <?php endif; ?>
+                    
                     <textarea class="replyCommentBody" placeholder="Add a comment..."></textarea>
 
                     <button class="cancelBtn">Cancel</button>
@@ -184,7 +188,7 @@
           </a>
           <div class="videoDetails">
             <a class="videoTitle" href="<?= URLROOT; ?>/watch/<?= $catVideo->videoId; ?>"><?= $catVideo->title; ?></a>
-            <a class="videoChannel" href="profile.html"><?= $catVideo->username; ?></a>
+            <a class="videoChannel" href="<?= URLROOT; ?>/profiles/<?= $catVideo->username; ?>"><?= $catVideo->username; ?></a>
             <p><?= Formater::getFormattedNumber($catVideo->views); ?> views &bull; <?= Formater::timeAgo($catVideo->uploadDate); ?></p>
           </div>
         </div>

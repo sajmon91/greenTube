@@ -33,6 +33,9 @@ class Users extends Controller
 			$pic = $pics[$rand];
       		$profilePic = "/assets/images/profilePictures/defaults/${pic}";
 
+      		// default cover picture assignment
+      		$coverPic = "/assets/images/coverPhotos/default/default-cover-photo.jpeg";
+
 			// init data
 	      	$data = [
 				'firstName' => trim(ucfirst(mb_strtolower($firstName, 'UTF-8'))),
@@ -43,6 +46,7 @@ class Users extends Controller
 	        	'password' => trim($pass),
 				'password2' => trim($pass2),
 				'profilePic' => $profilePic,
+				'coverPic' => $coverPic,
 				'firstNameErr' => '',
 				'lastNameErr' => '',
 	        	'usernameErr' => '',

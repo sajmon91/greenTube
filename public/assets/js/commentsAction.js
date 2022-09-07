@@ -54,11 +54,11 @@ if (postCommentBtn) {
 		.then(data => {
 
 			const comHTML = `<div class="commentWrapper">
-				                <a href="profile.html">
+				                <a href="${userIdData.dataset.urlroot}/profiles/${userIdData.title}">
 				                  <img class="profilePicture" src="${userImg}" alt="user image">
 				                </a>
 				                <div class="comment">
-				                  <h3><a href="profile.html">${userIdData.title}</a> <span>${data.date}</span></h3>
+				                  <h3><a href="${userIdData.dataset.urlroot}/profiles/${userIdData.title}">${userIdData.title}</a> <span>${data.date}</span></h3>
 				                  <div class="postedCommentBody">${data.body}</div>
 				                  <div class="controls">
 				                    <button class="likeBtn" title="I like this">
@@ -252,11 +252,11 @@ if (replysBtns) {
 				.then(data => {
 
 					const comHTML = `<div class="commentWrapper">
-						                <a href="profile.html">
+						                <a href="${userIdData.dataset.urlroot}/profiles/${userIdData.title}">
 						                  <img class="profilePicture" src="${userImg}" alt="user image">
 						                </a>
 						                <div class="comment">
-						                  <h3><a href="profile.html">${userIdData.title}</a> <span>${data.date}</span></h3>
+						                  <h3><a href="${userIdData.dataset.urlroot}/profiles/${userIdData.title}">${userIdData.title}</a> <span>${data.date}</span></h3>
 						                  <div class="postedCommentBody">${data.body}</div>
 						                  <div class="controls">
 						                    <button class="likeBtn" title="I like this">
@@ -313,11 +313,11 @@ if (getReplysBtns) {
 
 					data.forEach(ele => {
 						html += `<div class="commentWrapper">
-					                <a href="profile.html">
+					                <a href="${url + '/profiles/' + ele.com.username}">
 					                  <img class="profilePicture" src="${url + ele.com.profilePic}" alt="user image">
 					                </a>
 					                <div class="comment">
-					                  <h3><a href="profile.html">${ele.com.username}</a> <span>${ele.date}</span></h3>
+					                  <h3><a href="${url + '/profiles/' + ele.com.username}">${ele.com.username}</a> <span>${ele.date}</span></h3>
 					                  <div class="postedCommentBody">${ele.com.body}</div>
 					                  <div class="controls">
 					                    <button data-commid="${ele.com.commentId}" class="likeBtn commLikeBtn" title="I like this">
