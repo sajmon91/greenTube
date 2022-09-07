@@ -83,7 +83,7 @@
       </li>
 
       <li class="sidebarListItem">
-        <a href="subscriptions.html" class="sidebarLink">
+        <a href="<?= URLROOT; ?>/pages/subscriptions" class="sidebarLink">
           <img src="<?= URLROOT; ?>/assets/images/icons/subscribe.png" alt="subscribe icon">
           <p>Subscriptions</p>
         </a>
@@ -121,7 +121,7 @@
           </li>
 
           <li class="sidebarListItem">
-            <a href="subscriptions.html" class="sidebarLink" title="Subscriptions">
+            <a href="<?= URLROOT; ?>/pages/subscriptions" class="sidebarLink" title="Subscriptions">
               <img src="<?= URLROOT; ?>/assets/images/icons/subscribe.png" alt="subscribe icon">
               <p class="hiddenSidebar">Subscriptions</p>
             </a>

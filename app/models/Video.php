@@ -118,7 +118,37 @@ class Video
 
 //////////////////////////////////////////////////////////////////////////
 
+	public function getSubscriptionsVideos($subsArr)
+	{
+		if (sizeof($subsArr) > 0) {
+			$condition = '';
+			$i = 0;
 
+			while ($i < sizeof($subsArr)) {
+				if ($i === 0) {
+					$condition .= "WHERE (v.uploadedBy = ? AND v.privacy = 0)";
+				}else{
+					$condition .= " OR (v.uploadedBy = ? AND v.privacy = 0)";
+				}
+				$i++;
+			}
+
+			$this->db->query("SELECT v.videoId, v.title, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username, u.profilePic FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId $condition ORDER BY v.uploadDate DESC LIMIT 30");
+
+			$i = 1;
+
+			foreach($subsArr as $sub){
+				$this->db->bind($i, $sub->userId);
+				$i++;
+			}
+
+			return $this->db->resultSet();
+		}
+	    
+	}
+
+
+//////////////////////////////////////////////////////////////////////////
 
 
 

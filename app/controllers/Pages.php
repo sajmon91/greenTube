@@ -48,7 +48,27 @@ class Pages extends Controller
 
 /////////////////////////////////////////////////////////////////
 
+	public function subscriptions()
+	{
+		if (!isLoggedIn()) {
+			redirect('users/signin');
+		}
 
+	    $subs = $this->subscriberModel->getSubscriptions();
+
+	    $videos = $this->videoModel->getSubscriptionsVideos($subs);
+
+	    $data = [
+	    	'title' => "Subscriptions - " . SITENAME,
+	    	'videos' => $videos,
+			'subs' => $subs
+	    ];
+
+	    $this->view('pages/subscriptions', $data);
+	}
+
+
+/////////////////////////////////////////////////////////////////
 
 
 
