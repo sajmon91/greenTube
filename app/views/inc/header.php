@@ -90,7 +90,7 @@
       </li>
 
       <li class="sidebarListItem">
-        <a href="likedVideos.html" class="sidebarLink">
+        <a href="<?= URLROOT; ?>/pages/likedVideos" class="sidebarLink">
           <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like video icon">
           <p>Liked Videos</p>
         </a>
@@ -128,7 +128,7 @@
           </li>
 
           <li class="sidebarListItem">
-            <a href="likedVideos.html" class="sidebarLink" title="Liked Videos">
+            <a href="<?= URLROOT; ?>/pages/likedVideos" class="sidebarLink" title="Liked Videos">
               <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like video icon">
               <p class="hiddenSidebar">Liked Videos</p>
             </a>

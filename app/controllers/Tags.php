@@ -24,7 +24,7 @@ class Tags extends Controller
 		$videosCount = $this->tagModel->getVideosCountByTag($tagName);
 
 		$videos = array_map(function($videoId){
-			return $this->videoModel->getVideosByTag($videoId->videoId);
+			return $this->videoModel->getVideoInfoById($videoId->videoId);
 		}, $videoIdByTagName);
 
 		$subs = $this->subscriberModel->getSubscriptions();

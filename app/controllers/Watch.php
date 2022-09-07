@@ -71,7 +71,7 @@ class Watch extends Controller
 		
 		// init data
 		$data = [
-			'title' => $video->title,
+			'title' => $video->title . ' - ' . SITENAME,
 			'video' => $video,
 			'tags' => $tags,
 			'user' => $user,

@@ -64,9 +64,9 @@ class Video
 
 ////////////////////////////////////////////////////////////////////////////
 
-	public function getVideosByTag($videoId)
+	public function getVideoInfoById($videoId)
 	{
-	    $this->db->query("SELECT v.videoId, v.title, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username, u.profilePic FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE v.privacy = 0 AND v.videoId = :videoId ORDER BY RAND() LIMIT 20");
+	    $this->db->query("SELECT v.videoId, v.title, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username, u.profilePic FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE v.privacy = 0 AND v.videoId = :videoId");
 
 	    $this->db->bind(':videoId', $videoId);
 
@@ -147,9 +147,18 @@ class Video
 	    
 	}
 
-
 //////////////////////////////////////////////////////////////////////////
 
+	public function getLikedVideo($videoId)
+	{
+	    $this->db->query("SELECT v.videoId, v.title, v.duration, t.filePath as thumbPath, u.username, u.userId FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE v.privacy = 0 AND v.videoId = :videoId");
+
+	    $this->db->bind(':videoId', $videoId);
+
+	    return $this->db->single();
+	}
+
+//////////////////////////////////////////////////////////////////////////
 
 
 

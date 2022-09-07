@@ -122,6 +122,16 @@ class Like
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function getLikesVideoId($userId)
+  {
+      $this->db->query("SELECT videoId FROM likes WHERE userId = :userId AND commentId = 0 ORDER BY likeId DESC");
+
+      $this->db->bind(':userId', $userId);
+
+      return $this->db->resultSet();
+  }
+
+////////////////////////////////////////////////////////////////////////////
 
 
 

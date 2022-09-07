@@ -5,12 +5,14 @@ class Pages extends Controller
 	private $videoModel;
 	private $tagModel;
 	private $subscriberModel;
+	private $likeModel;
 
 	public function __construct()
 	{
 	    $this->videoModel = $this->model('Video');
 	    $this->tagModel = $this->model('Tag');
 	    $this->subscriberModel = $this->model('Subscriber');
+	    $this->likeModel = $this->model('Like');
 	}
 
 /////////////////////////////////////////////////////////////////
@@ -70,7 +72,30 @@ class Pages extends Controller
 
 /////////////////////////////////////////////////////////////////
 
+	public function LikedVideos()
+	{
+		if (!isLoggedIn()) {
+			redirect('users/signin');
+		}
 
+	    $subs = $this->subscriberModel->getSubscriptions();
+	    $likesVideoIds = $this->likeModel->getLikesVideoId($_SESSION['user_id']);
+
+	    $videos = array_map(function($videoId){
+			return $this->videoModel->getLikedVideo($videoId->videoId);
+		}, $likesVideoIds);
+
+	    $data = [
+	    	'title' => "Liked videos - " . SITENAME,
+			'subs' => $subs,
+			'totalVideos' => count($likesVideoIds),
+			'videos' => $videos
+	    ];
+
+	    $this->view('pages/likedVideos', $data);
+	}
+
+/////////////////////////////////////////////////////////////////
 
 
 
