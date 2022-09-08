@@ -14,7 +14,7 @@ if (subBtn) {
 
 		// change btn class and text
 		toggleCSSclasses(subBtn, 'unsubscribe', 'subscribe');
-		subBtn.textContent = subBtn.classList.contains('subscribe') ? 'subscribe' : 'subscribed';
+		subBtn.textContent = subBtn.classList.contains('subscribe') ? 'Subscribe' : 'Subscribed';
 
 		fetch('/greenTube/subscribers/subscribe', {
 			method: 'POST',

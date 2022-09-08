@@ -112,6 +112,20 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function getUserDataByUsername($username)
+	{
+    $this->db->query("SELECT userId, firstName, lastName, username, signUpDate, profilePic, coverPic, channelDesc FROM users WHERE username = :username");
+
+    $this->db->bind(':username', $username);
+
+    return $this->db->single();
+	}
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
 	
 } // end class
 

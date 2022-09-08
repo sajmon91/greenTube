@@ -160,8 +160,38 @@ class Video
 
 //////////////////////////////////////////////////////////////////////////
 
+	public function getVideosTotalViews($userId)
+	{
+	    $this->db->query("SELECT SUM(views) as vidViews FROM videos WHERE uploadedBy = :uploadedBy");
 
+	    $this->db->bind(':uploadedBy', $userId);
 
+	    return $this->db->single();
+	}
+
+//////////////////////////////////////////////////////////////////////////
+
+	public function getVideosCount($userId)
+	{
+	    $this->db->query("SELECT COUNT(videoId) as videoCount FROM videos WHERE uploadedBy = :uploadedBy");
+
+	    $this->db->bind(':uploadedBy', $userId);
+
+	    return $this->db->single();
+	}
+
+//////////////////////////////////////////////////////////////////////////
+
+	public function getVideosByUser($userId)
+	{
+	    $this->db->query("SELECT v.videoId, v.title, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 WHERE v.privacy = 0 AND v.uploadedBy = :userId ORDER BY v.videoId DESC");
+
+	    $this->db->bind(':userId', $userId);
+
+	    return $this->db->resultSet();
+	}
+
+//////////////////////////////////////////////////////////////////////////
 
 
 

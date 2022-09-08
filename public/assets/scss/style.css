@@ -1202,13 +1202,23 @@ main.content {
   font-weight: 600;
   font-size: 1.4rem;
 }
-.profileContent .profile .profileMenu .subsButton .subs {
+.profileContent .profile .profileMenu .subsButton .follow.subs {
   border-radius: 0 2.5rem 2.5rem 0;
-  transition: all 0.3s ease-in-out;
+  background-color: transparent;
 }
-.profileContent .profile .profileMenu .subsButton .subs:hover {
+.profileContent .profile .profileMenu .subsButton .subscribeBtn {
+  border-radius: 0 2.5rem 2.5rem 0;
   background-color: #1dd320;
   color: #000;
+  transition: filter 0.3s ease-in-out;
+}
+.profileContent .profile .profileMenu .subsButton .subscribeBtn:hover {
+  filter: brightness(85%);
+}
+.profileContent .profile .profileMenu .subsButton .subscribeBtn.unsubscribe {
+  background-color: transparent;
+  color: #fff;
+  border-color: #5f6368;
 }
 .profileContent .profile .profileInfo {
   justify-content: center;
