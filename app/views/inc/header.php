@@ -48,7 +48,7 @@
 
           <div class="dropdownContent">
             <a href="<?= URLROOT; ?>/profiles/<?= $_SESSION['username']; ?>"><img src="<?= URLROOT; ?>/assets/images/icons/user-white.png" alt="user"> Profile</a>
-            <a href="dashboard.html"><img src="<?= URLROOT; ?>/assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
+            <a href="<?= URLROOT; ?>/dashboards/<?= $_SESSION['user_id']; ?>"><img src="<?= URLROOT; ?>/assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
             <a href="settings.html"><img src="<?= URLROOT; ?>/assets/images/icons/settings.png" alt="settings">Settings</a>
             <a href="<?= URLROOT; ?>/users/logout"><img src="<?= URLROOT; ?>/assets/images/icons/logout.png" alt="logout">Logout</a>
           </div>

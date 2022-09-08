@@ -193,6 +193,16 @@ class Video
 
 //////////////////////////////////////////////////////////////////////////
 
+	public function getVideosInDashboard($userId)
+	{
+	    $this->db->query("SELECT v.videoId, v.title,v.description, v.privacy, v.uploadDate, v.views, t.filePath as thumbPath FROM videos as v inner join thumbnails as t on v.videoId = t.videoId and t.selected = 1 WHERE v.uploadedBy = :userId ORDER BY v.videoId DESC");
+
+	    $this->db->bind(':userId', $userId);
+
+	    return $this->db->resultSet();
+	}
+
+//////////////////////////////////////////////////////////////////////////
 
 
 
