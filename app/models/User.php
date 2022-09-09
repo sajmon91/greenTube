@@ -103,7 +103,7 @@ class User
 
 	public function getUserDataById($id)
 	{
-	    $this->db->query("SELECT userId, firstName, lastName, username, signUpDate, profilePic FROM users WHERE userId = :userId");
+	    $this->db->query("SELECT userId, firstName, lastName, username,email, signUpDate, profilePic, coverPic, channelDesc FROM users WHERE userId = :userId");
 
 	    $this->db->bind(':userId', $id);
 
@@ -123,6 +123,21 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function updateProfilePic($userId, $image)
+	{
+	    $this->db->query("UPDATE users SET profilePic = :image WHERE userId = :userId");
+
+	    $this->db->bind(':image', $image);
+	    $this->db->bind(':userId', $userId);
+
+	    if ($this->db->execute()) {
+	      return true;
+	    }else{
+	      return false;
+	    }
+	}
+
+////////////////////////////////////////////////////////////////////////////
 
 
 

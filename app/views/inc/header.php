@@ -49,7 +49,7 @@
           <div class="dropdownContent">
             <a href="<?= URLROOT; ?>/profiles/<?= $_SESSION['username']; ?>"><img src="<?= URLROOT; ?>/assets/images/icons/user-white.png" alt="user"> Profile</a>
             <a href="<?= URLROOT; ?>/dashboards/<?= $_SESSION['user_id']; ?>"><img src="<?= URLROOT; ?>/assets/images/icons/dashboard.png" alt="dashboard">Dashboard</a>
-            <a href="settings.html"><img src="<?= URLROOT; ?>/assets/images/icons/settings.png" alt="settings">Settings</a>
+            <a href="<?= URLROOT; ?>/users/settings/<?= $_SESSION['user_id']; ?>"><img src="<?= URLROOT; ?>/assets/images/icons/settings.png" alt="settings">Settings</a>
             <a href="<?= URLROOT; ?>/users/logout"><img src="<?= URLROOT; ?>/assets/images/icons/logout.png" alt="logout">Logout</a>
           </div>
         </div>
@@ -162,7 +162,7 @@
         <div class="sidebar__bottom">
           <ul class="sidebarList">
             <li class="sidebarListItem">
-              <a href="settings.html" class="sidebarLink" title="Settings">
+              <a href="<?= URLROOT; ?>/users/settings/<?= $_SESSION['user_id']; ?>" class="sidebarLink" title="Settings">
                 <img src="<?= URLROOT; ?>/assets/images/icons/settings.png" alt="settings icon">
                 <p class="hiddenSidebar">Settings</p>
               </a>

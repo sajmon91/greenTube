@@ -6,10 +6,14 @@
 class Users extends Controller
 {
 	private $userModel;
+	private $subscriberModel;
+	private $imgSizeLimit = 2 * 1024 * 1024;
+	private $imgAllowedTypes = ['jpeg', 'jpg', 'png'];
 
 	public function __construct()
 	{
 	    $this->userModel = $this->model('User');
+	    $this->subscriberModel = $this->model('Subscriber');
 	}
 
 /////////////////////////////////////////////////////////
@@ -295,6 +299,125 @@ class Users extends Controller
 	}
 
 //////////////////////////////////////////////////////
+
+	public function settings($userId)
+	{
+	    if (!isLoggedIn()) {
+			redirect('');
+		}
+
+		$userId = filter_var($userId, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+
+		if ($userId !== $_SESSION['user_id']) {
+			redirect('');
+		}
+
+		$userData = $this->userModel->getUserDataById($userId);
+		$subs = $this->subscriberModel->getSubscriptions();
+
+		$data = [
+			'title' => "Settings - " . SITENAME,
+			'subs' => $subs,
+			'userData' => $userData
+		];
+
+		$this->view('users/settings', $data);
+
+	}
+
+//////////////////////////////////////////////////////
+
+	public function updateProfilePic()
+	{
+	    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	    	if (isset($_FILES['image'])) {
+	    		$image = $_FILES['image'];
+	    		$userId = $_SESSION['user_id'];
+
+	    		// validate image size
+	    		$this->validateImageSize($image);
+
+	    		// validate image type
+	    		$imgType = pathInfo($image['name'], PATHINFO_EXTENSION);
+	    		$this->validateImageType($imgType);
+
+	    		$targetDir = "assets/images/profilePictures/";
+	    		$imageName = $userId . '-' . uniqid() . '.' . $imgType;
+	    		$tempDir = $targetDir . $imageName;
+
+	    		if (move_uploaded_file($image['tmp_name'], $tempDir)) {
+	    			$targetDir = "/assets/images/profilePictures/";
+	    			$finalImage = $targetDir . $imageName;
+
+	    			if ($this->userModel->updateProfilePic($userId, $finalImage)) {
+	    				$_SESSION['profile_pic'] = $finalImage;
+
+	    				$data = [
+					        'status' => 1,
+					        'msg' => 'Image Updated Successfully',
+					        'image' => $finalImage
+					    ];
+
+					    echo json_encode($data);
+	    			}else{
+	    				$data = [
+					        'status' => 0,
+					        'msg' => 'Error Image No Updated'
+					    ];
+
+					    echo json_encode($data);
+	    			}
+
+	    		}
+	    		
+	    	}else{
+	    		$data = [
+					'status' => 0,
+					'msg' => 'You must take picture'
+				];
+
+				echo json_encode($data);
+	    	}
+	    }
+	}
+
+//////////////////////////////////////////////////////
+
+	private function validateImageSize($img)
+	{
+		if ($img['size'] > $this->imgSizeLimit) {
+			$data = [
+				'status' => 0,
+				'msg' => 'File must be less than 2 MB'
+			];
+
+			echo json_encode($data);
+			exit;
+		}
+	}
+
+//////////////////////////////////////////////////////
+
+	private function validateImageType($img)
+	{
+		$lowercased = strtolower($img);
+		 
+		if (!in_array($lowercased, $this->imgAllowedTypes)) {
+		 	$data = [
+				'status' => 0,
+				'msg' => 'Only .jpg and .png image are allowed'
+			];
+
+			echo json_encode($data);
+			exit;
+		}
+	}
+
+
+
+
+
+
 
 } // end class
 
