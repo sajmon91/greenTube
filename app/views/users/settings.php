@@ -41,11 +41,11 @@
 
         <h3>Update Password</h3>
 
-        <input class="formInput" type="password" placeholder="Old Password">
-        <input class="formInput" type="password" placeholder="New Password">
-        <input class="formInput" type="password" placeholder="Confirm new password">
+        <input class="formInput" id="oldPass" type="password" placeholder="Old Password">
+        <input class="formInput" id="newPass" type="password" placeholder="New Password">
+        <input class="formInput" id="conNewPass" type="password" placeholder="Confirm new password">
 
-        <button class="formBtn">Save</button>
+        <button class="formBtn savePassword">Save</button>
       </div>
 
       <div class="formSection">

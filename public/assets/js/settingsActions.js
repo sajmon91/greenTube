@@ -56,6 +56,7 @@ if (saveProfileImageBtn) {
 	});
 }
 
+//////////////////////////////////////////////////////////////////////////////
 
 // update user details info
 const saveUserDetailsBtn = document.querySelector('.saveUserDetails');
@@ -103,3 +104,40 @@ if (saveUserDetailsBtn) {
 	});
 }
 
+//////////////////////////////////////////////////////////////////////////////
+
+// update password
+const savePasswordBtn = document.querySelector('.savePassword');
+
+if (savePasswordBtn) {
+	savePasswordBtn.addEventListener('click', () => {
+		const oldPass = document.querySelector('#oldPass').value;
+		const newPass = document.querySelector('#newPass').value;
+		const conNewPass = document.querySelector('#conNewPass').value;
+
+		let formData = new FormData();
+		formData.append('oldPass', oldPass);
+		formData.append('newPass', newPass);
+		formData.append('conNewPass', conNewPass);
+
+		fetch('/greenTube/users/updatePassword', {
+	        method: 'POST',
+	        body: formData
+	      })
+	      .then(response => {
+	        if (!response.ok) {
+	          throw new Error();
+	        }
+	        return response.json();
+	      })
+	      .then(data => {
+
+	      	if (data.status) {
+	      		Swal.fire(`${data.msg}`, '', 'success');
+	      	}else{
+	      		Swal.fire(`${data.msg}`, '', 'error');
+	      	}
+	      })
+	      .catch(err => console.error(err));
+	});
+}

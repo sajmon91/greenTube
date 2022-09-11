@@ -192,6 +192,34 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function checkOldPass($oldPass, $userId)
+  {
+      $this->db->query("SELECT password FROM users WHERE userId = :userId");
+
+      $this->db->bind(':userId', $userId);
+
+      $row = $this->db->single();
+
+      return password_verify($oldPass, $row->password);
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+  public function updatePass($userId, $newPass)
+  {
+      $this->db->query("UPDATE users SET password = :password WHERE userId = :userId");
+
+      $this->db->bind(':password', $newPass);
+      $this->db->bind(':userId', $userId);
+
+      return ($this->db->execute()) ? true : false;
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
 	
 } // end class

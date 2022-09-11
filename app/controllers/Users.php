@@ -502,6 +502,57 @@ class Users extends Controller
 
 //////////////////////////////////////////////////////
 
+	public function updatePassword()
+	{
+	    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	    	if (isset($_POST['oldPass']) && isset($_POST['newPass']) && isset($_POST['conNewPass'])) {
+
+	    		$userId = $_SESSION['user_id'];
+	    		$oldPass = trim(filter_input(INPUT_POST, 'oldPass', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+	    		$newPass = trim(filter_input(INPUT_POST, 'newPass', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+	    		$conNewPass = trim(filter_input(INPUT_POST, 'conNewPass', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+
+	    		// validate password
+	    		if (!$this->userModel->checkOldPass($oldPass, $userId)) {
+	    			$data = [
+							'status' => 0,
+							'msg' => 'Old password is incorrect'			
+					];
+
+		    		echo json_encode($data);
+		    		return;
+	    		}
+
+	    		$validatePassword = $this->validatePassord($newPass, $conNewPass);
+
+	    		if ($validatePassword) {
+	    			$data = [
+							'status' => 0,
+							'msg' => $validatePassword			
+					];
+
+		    		echo json_encode($data);
+		    		return;
+	    		}
+
+	    		// hash password
+	    		$password = password_hash($newPass, PASSWORD_DEFAULT);
+
+	    		// update password
+	    		if ($this->userModel->updatePass($userId, $password)) {
+	    			$data = [
+						'status' => 1,
+						'msg' => 'Password Updated Successfully'
+					];
+
+	    			echo json_encode($data);
+
+	    		}
+	    	}
+	    }
+	}
+
+//////////////////////////////////////////////////////
 
 
 
