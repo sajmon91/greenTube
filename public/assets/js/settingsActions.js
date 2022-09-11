@@ -1,4 +1,4 @@
-import { userIdData, userId} from "./likeDislikeVideo.js";
+import { userIdData } from "./likeDislikeVideo.js";
 
 // update profile image
 const saveProfileImageBtn = document.querySelector('.saveProfileImg');
@@ -55,3 +55,51 @@ if (saveProfileImageBtn) {
 	      .catch(err => console.error(err));
 	});
 }
+
+
+// update user details info
+const saveUserDetailsBtn = document.querySelector('.saveUserDetails');
+
+if (saveUserDetailsBtn) {
+	saveUserDetailsBtn.addEventListener('click', () => {
+		const fn = document.querySelector('#fn').value;
+		const ln = document.querySelector('#ln').value;
+		const em = document.querySelector('#em').value;
+		const un = document.querySelector('#un').value;
+
+		let formData = new FormData();
+		formData.append('firstName', fn);
+		formData.append('lastName', ln);
+		formData.append('email', em);
+		formData.append('username', un);
+
+		fetch('/greenTube/users/updateUserDetails', {
+	        method: 'POST',
+	        body: formData
+	      })
+	      .then(response => {
+	        if (!response.ok) {
+	          throw new Error();
+	        }
+	        return response.json();
+	      })
+	      .then(data => {
+
+	      	if (data.status) {
+	      		Swal.fire(`${data.msg}`, '', 'success');
+	      	}else{
+	      		let msgText = '';
+	      		data.msg.forEach(el => {
+	      			if (el !== null) {
+	      				msgText += el + ' </br>';
+	      			}
+	      			
+	      		});
+
+	      		Swal.fire(`${msgText}`, '', 'error');
+	      	}
+	      })
+	      .catch(err => console.error(err));
+	});
+}
+

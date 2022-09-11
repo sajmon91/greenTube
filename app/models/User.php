@@ -139,6 +139,58 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function findUserDetailsByEmail($email, $userId)
+	{
+	    $this->db->query('SELECT userId FROM users WHERE email = :email AND userId != :userId');
+	    // bind value
+	    $this->db->bind(':email', $email);
+	    $this->db->bind(':userId', $userId);
+
+	    $row = $this->db->single();
+
+	    // check row
+	    if ($this->db->rowCount() > 0) {
+	      	return true;
+	    }else{
+	        return false;
+	    }
+	}
+
+////////////////////////////////////////////////////////////////////////////
+
+	public function findUserDetailsByUsername($username, $userId)
+  {
+     	$this->db->query('SELECT userId FROM users WHERE username = :username AND userId != :userId');
+     	// bind value
+     	$this->db->bind(':username', $username);
+     	$this->db->bind(':userId', $userId);
+
+     	$row = $this->db->single();
+
+     	// check row
+     	if ($this->db->rowCount() > 0) {
+       	return true;
+     	}else{
+       	return false;
+     	}
+  }
+
+////////////////////////////////////////////////////////////////////////////
+
+  public function updateDetail($userId, $firstName, $lastName, $username, $email)
+  {
+      $this->db->query("UPDATE users SET firstName = :firstName, lastName = :lastName, username = :username, email = :email WHERE userId = :userId");
+
+      $this->db->bind(':firstName', $firstName);
+      $this->db->bind(':lastName', $lastName);
+      $this->db->bind(':username', $username);
+      $this->db->bind(':email', $email);
+      $this->db->bind(':userId', $userId);
+
+	    return ($this->db->execute()) ? true : false;
+  }
+
+////////////////////////////////////////////////////////////////////////////
 
 
 	

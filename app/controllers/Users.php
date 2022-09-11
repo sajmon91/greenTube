@@ -413,8 +413,94 @@ class Users extends Controller
 		}
 	}
 
+//////////////////////////////////////////////////////
 
+	public function updateUserDetails()
+	{
+	    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	    	if (isset($_POST['firstName']) && isset($_POST['lastName']) && isset($_POST['email']) && isset($_POST['username'])) {
 
+	    		$userId = $_SESSION['user_id'];
+	    		$firstName = trim(ucfirst(mb_strtolower(filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_FULL_SPECIAL_CHARS), 'UTF-8')));
+	    		$lastName = trim(ucfirst(mb_strtolower(filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_FULL_SPECIAL_CHARS), 'UTF-8')));
+	    		$username = trim(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+				$email = trim(filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL));
+
+	    		// validate 
+	    		$firstNameValidate = $this->validateFirstName($firstName);
+	    		$lastNameValidate = $this->validateLastName($lastName);
+	    		$usernameValidate = $this->validateUserUsername($username, $userId);
+				$emailValidate = $this->validateUserEmail($email, $userId);
+
+	    		if ($firstNameValidate || $lastNameValidate || $usernameValidate ||  $emailValidate) {
+		    			$data = [
+						'status' => 0,
+						'msg' => [$firstNameValidate, $lastNameValidate, $usernameValidate , $emailValidate]
+					];
+
+					echo json_encode($data);
+					return;
+	    		}
+
+	    		// update data
+	    		if ($this->userModel->updateDetail($userId, $firstName, $lastName, $username, $email)) {
+	    			$_SESSION['username'] = $username;
+
+	    			$data = [
+						'status' => 1,
+						'msg' => 'Updated Successfully'
+					];
+
+	    			echo json_encode($data);
+
+	    		}
+	    	}
+	    }
+	}
+
+//////////////////////////////////////////////////////
+
+	private function validateUserEmail($email, $userId)
+	{
+		$mailFormat = "/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/";
+
+	    if (empty($email)) {
+      		return 'Please enter email';
+      	}
+
+      	if (!preg_match($mailFormat, $email)) {
+      		return 'Invalid email';
+      	}
+
+      	if ($this->userModel->findUserDetailsByEmail($email, $userId)) {
+      		return 'Email is already taken';
+      	}
+	}
+
+//////////////////////////////////////////////////////
+
+	private function validateUserUsername($username, $userId)
+	{
+		$specialChars = "/^[0-9a-zA-Z]*$/";
+
+	    if (empty($username)) {
+      		return 'Please enter username';
+      	}
+
+      	if (strlen($username) > 25 || strlen($username) < 5) {
+      		return 'Your username must be between 5 and 25 characters';
+      	}
+
+      	if (!preg_match($specialChars, $username)) {
+      		return 'Username must be only letters and numbers';
+      	}
+
+      	if ($this->userModel->findUserDetailsByUsername($username, $userId)) {
+      		return 'Username is already taken';
+      	}
+	}
+
+//////////////////////////////////////////////////////
 
 
 

@@ -29,12 +29,12 @@
 
         <h3>User Details</h3>
 
-        <input class="formInput" type="text" placeholder="First Name" value="<?= $data['userData']->firstName; ?>">
-        <input class="formInput" type="text" placeholder="Last Name" value="<?= $data['userData']->lastName; ?>">
-        <input class="formInput" type="email" placeholder="Email" value="<?= $data['userData']->email; ?>">
-        <input class="formInput" type="text" placeholder="Username" value="<?= $data['userData']->username; ?>">
+        <input class="formInput" id="fn" type="text" placeholder="First Name" value="<?= $data['userData']->firstName; ?>">
+        <input class="formInput" id="ln" type="text" placeholder="Last Name" value="<?= $data['userData']->lastName; ?>">
+        <input class="formInput" id="em" type="email" placeholder="Email" value="<?= $data['userData']->email; ?>">
+        <input class="formInput" id="un" type="text" placeholder="Username" value="<?= $data['userData']->username; ?>">
 
-        <button class="formBtn">Save</button>
+        <button class="formBtn saveUserDetails">Save</button>
       </div>
 
       <div class="formSection">
