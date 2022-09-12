@@ -63,7 +63,7 @@
           </label>
         </div>
 
-        <button class="formBtn">Save</button>
+        <button class="formBtn saveCoverImg">Save</button>
       </div>
 
       <div class="formSection">

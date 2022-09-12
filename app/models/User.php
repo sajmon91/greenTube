@@ -217,6 +217,17 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function updateCoverPic($userId, $coverImg)
+  {
+      $this->db->query("UPDATE users SET coverPic = :coverImg WHERE userId = :userId");
+
+	    $this->db->bind(':coverImg', $coverImg);
+	    $this->db->bind(':userId', $userId);
+
+	    return ($this->db->execute()) ? true : false;
+  }
+
+////////////////////////////////////////////////////////////////////////////
 
 
 

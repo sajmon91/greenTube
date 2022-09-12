@@ -554,6 +554,60 @@ class Users extends Controller
 
 //////////////////////////////////////////////////////
 
+	public function updateCoverImg()
+	{
+	    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	    	if (isset($_FILES['coverImage'])) {
+	    		$image = $_FILES['coverImage'];
+	    		$userId = $_SESSION['user_id'];
+
+	    		// validate image size
+	    		$this->validateImageSize($image);
+
+	    		// validate image type
+	    		$imgType = pathInfo($image['name'], PATHINFO_EXTENSION);
+	    		$this->validateImageType($imgType);
+
+	    		$targetDir = "assets/images/coverPhotos/";
+	    		$imageName = $userId . '-' . uniqid() . '.' . $imgType;
+	    		$tempDir = $targetDir . $imageName;
+
+	    		if (move_uploaded_file($image['tmp_name'], $tempDir)) {
+	    			$targetDir = "/assets/images/coverPhotos/";
+	    			$finalImage = $targetDir . $imageName;
+
+	    			if ($this->userModel->updateCoverPic($userId, $finalImage)) {
+
+	    				$data = [
+					        'status' => 1,
+					        'msg' => 'Image Updated Successfully',
+					    ];
+
+					    echo json_encode($data);
+	    			}else{
+	    				$data = [
+					        'status' => 0,
+					        'msg' => 'Error Image No Updated'
+					    ];
+
+					    echo json_encode($data);
+	    			}
+	    		}
+	    		
+	    	}else{
+	    		$data = [
+					'status' => 0,
+					'msg' => 'You must take picture'
+				];
+
+				echo json_encode($data);
+	    	}
+	    }
+	}
+
+//////////////////////////////////////////////////////
+
+
 
 
 } // end class

@@ -141,3 +141,60 @@ if (savePasswordBtn) {
 	      .catch(err => console.error(err));
 	});
 }
+
+//////////////////////////////////////////////////////////////////////////////
+
+// update cover image
+const saveCoverImgBtn = document.querySelector('.saveCoverImg');
+
+if (saveCoverImgBtn) {
+	const uplImg = document.querySelector('#coverImg');
+	const img = document.querySelector('.imgCover');
+
+	uplImg.addEventListener('change', () => {
+		const [file] = uplImg.files;
+		img.src = URL.createObjectURL(file);
+	});
+
+	saveCoverImgBtn.addEventListener('click', () => {
+		const image = uplImg.files[0];
+
+		if (image === undefined) {
+			Swal.fire('You must take new picture', '', 'error');
+      		return;
+		}
+
+		if (image.size > 2 * 1024 * 1024) {
+			Swal.fire('File must be less than 2 MB', '', 'error');
+      		return;
+		}
+
+		if (!['image/jpeg', 'image/png'].includes(image.type)) {
+			Swal.fire('Only .jpg and .png image are allowed', '', 'error');
+      		return;
+		}
+
+		let formData = new FormData();
+      	formData.append('coverImage', image);
+
+		fetch('/greenTube/users/updateCoverImg', {
+	        method: 'POST',
+	        body: formData
+	      })
+	      .then(response => {
+	        if (!response.ok) {
+	          throw new Error();
+	        }
+	        return response.json();
+	      })
+	      .then(data => {
+
+	      	if (data.status) {
+	      		Swal.fire(`${data.msg}`, '', 'success');
+	      	}else{
+	      		Swal.fire(`${data.msg}`, '', 'error');
+	      	}
+	      })
+	      .catch(err => console.error(err));
+	});
+}
