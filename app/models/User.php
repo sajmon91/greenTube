@@ -229,6 +229,17 @@ class User
 
 ////////////////////////////////////////////////////////////////////////////
 
+  public function updateChannelDescription($userId, $desc)
+  {
+      $this->db->query("UPDATE users SET channelDesc = :channelDesc WHERE userId = :userId");
+
+	    $this->db->bind(':channelDesc', $desc);
+	    $this->db->bind(':userId', $userId);
+
+	    return ($this->db->execute()) ? true : false;
+  }
+
+////////////////////////////////////////////////////////////////////////////
 
 
 

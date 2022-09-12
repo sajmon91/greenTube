@@ -70,9 +70,9 @@
 
         <h3>Channel Description</h3>
 
-        <textarea class="formInput"><?= $data['userData']->channelDesc; ?></textarea>
+        <textarea class="formInput channelDesc"><?= $data['userData']->channelDesc; ?></textarea>
 
-        <button class="formBtn">Save</button>
+        <button class="formBtn saveChannelDesc">Save</button>
       </div>
 
     </div>

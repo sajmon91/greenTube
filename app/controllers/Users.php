@@ -607,6 +607,26 @@ class Users extends Controller
 
 //////////////////////////////////////////////////////
 
+	public function updateChannelDesc()
+	{
+	    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	    	if (isset($_POST['channelDesc'])) {
+	    		$desc = trim(filter_input(INPUT_POST, 'channelDesc', FILTER_SANITIZE_FULL_SPECIAL_CHARS));
+	    		$userId = $_SESSION['user_id'];
+
+	    		if ($this->userModel->updateChannelDescription($userId, $desc)) {
+	    			$data = [
+						'status' => 1,
+						'msg' => 'Channel Description Updated Successfully'
+					];
+
+	    			echo json_encode($data);
+	    		}
+	    	}	
+	    }
+	}
+
+//////////////////////////////////////////////////////
 
 
 

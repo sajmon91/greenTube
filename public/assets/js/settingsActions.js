@@ -198,3 +198,37 @@ if (saveCoverImgBtn) {
 	      .catch(err => console.error(err));
 	});
 }
+
+//////////////////////////////////////////////////////////////////////////////
+
+// update channel description
+const saveChannelDescBtn = document.querySelector('.saveChannelDesc');
+
+if (saveChannelDescBtn) {
+	saveChannelDescBtn.addEventListener('click', () => {
+		const channelDesc = document.querySelector('.channelDesc').value;
+
+		let formData = new FormData();
+		formData.append('channelDesc', channelDesc);
+
+		fetch('/greenTube/users/updateChannelDesc', {
+	        method: 'POST',
+	        body: formData
+	      })
+	      .then(response => {
+	        if (!response.ok) {
+	          throw new Error();
+	        }
+	        return response.json();
+	      })
+	      .then(data => {
+
+	      	if (data.status) {
+	      		Swal.fire(`${data.msg}`, '', 'success');
+	      	}else{
+	      		Swal.fire(`${data.msg}`, '', 'error');
+	      	}
+	      })
+	      .catch(err => console.error(err));
+	});
+}
