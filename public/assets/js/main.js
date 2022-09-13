@@ -5,3 +5,4 @@ import "./likeDislikeVideo.js";
 import "./subscribeAction.js";
 import "./commentsAction.js";
 import "./settingsActions.js";
+import "./editVideoActions.js";

@@ -28,7 +28,7 @@
 
               <tr>
                 <td>
-                  <a href="editVideo.html">
+                  <a href="<?= URLROOT . '/editVideos/' . $video['video']->videoId; ?>">
                     <div class="tableVideo">
                       <img src="<?= URLROOT . '/' . $video['video']->thumbPath; ?>" alt="thumbnails">
                       <div>

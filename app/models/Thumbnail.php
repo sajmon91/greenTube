@@ -30,6 +30,31 @@ class Thumbnail
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function getVideoThumbnails($videoId)
+	{
+	    $this->db->query("SELECT * FROM thumbnails WHERE videoId = :videoId");
+
+	    $this->db->bind(':videoId', $videoId);
+
+	    return $this->db->resultSet();
+	}
+
+////////////////////////////////////////////////////////////////////////////
+
+	public function update($videoId, $thumbId)
+	{
+	    $this->db->query("UPDATE thumbnails SET selected = 0 WHERE videoId = :videoId");
+	    $this->db->bind(':videoId', $videoId);
+	    $this->db->execute();
+
+	    $this->db->query("UPDATE thumbnails SET selected = 1 WHERE id = :thumbId");
+	    $this->db->bind(':thumbId', $thumbId);
+
+	    return ($this->db->execute()) ? true : false;
+	}
+
+////////////////////////////////////////////////////////////////////////////
+
 
 
 	
