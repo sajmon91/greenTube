@@ -874,6 +874,20 @@ main.content {
   font-size: 1.3rem;
   color: #aaa;
 }
+.videoContent .playVideo .publisher .editBtn {
+  background-color: #5f6368;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+  color: #fff;
+  text-transform: uppercase;
+  margin-left: 1rem;
+  letter-spacing: 0.1rem;
+  transition: filter 0.2s ease-in-out;
+}
+.videoContent .playVideo .publisher .editBtn:hover {
+  filter: brightness(85%);
+}
 .videoContent .playVideo .publisher .subscribeBtn {
   background-color: #1dd320;
   color: #000;

@@ -99,6 +99,22 @@
         color: a.$grey-font;
       }
 
+      .editBtn {
+        background-color: a.$border-color;
+        padding: 0.7rem 1.5rem;
+        border-radius: 0.5rem;
+        font-size: 1.4rem;
+        color: #fff;
+        text-transform: uppercase;
+        margin-left: 1rem;
+        letter-spacing: 0.1rem;
+        transition: filter 0.2s ease-in-out;
+
+        &:hover {
+          filter: brightness(85%);
+        }
+      }
+
       .subscribeBtn {
         background-color: a.$green;
         color: #000;

@@ -55,7 +55,9 @@
         </div>
 
         <?php if($data['isMyVideo']): ?>
-          <p>edit video btn here</p>
+          <a href="<?= URLROOT . '/editVideos/' . $data['video']->videoId; ?>">
+            <button class="editBtn">Edit</button>
+          </a>
         <?php else: ?>
           <button data-subId="<?= $data['user']->userId; ?>" class="subscribeBtn <?= (($data['isSubscribedTo']) ? 'unsubscribe' : 'subscribe'); ?>"><?= (($data['isSubscribedTo']) ? 'Subscribed' : 'Subscribe'); ?></button>
         <?php endif; ?>
