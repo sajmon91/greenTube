@@ -204,6 +204,21 @@ class Video
 
 //////////////////////////////////////////////////////////////////////////
 
+	public function updateVideoInfo($data)
+	{
+	    $this->db->query("UPDATE videos SET title = :title, description = :description, category = :category, privacy = :privacy, comments = :comments WHERE videoId = :videoId");
+
+	    $this->db->bind(':title', $data['videoTitle']);
+	    $this->db->bind(':description', $data['videoDesc']);
+	    $this->db->bind(':category', $data['videoCat']);
+	    $this->db->bind(':privacy', $data['videoPri']);
+	    $this->db->bind(':comments', $data['videoComm']);
+	    $this->db->bind(':videoId', $data['videoId']);
+
+	    return ($this->db->execute()) ? true : false;
+	}
+
+//////////////////////////////////////////////////////////////////////////
 
 
 } // end class

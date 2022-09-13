@@ -71,6 +71,19 @@ class Tag
 
 ////////////////////////////////////////////////////////////////////////////
 
+	public function deleteVideoTags($videoId)
+	{
+	    $this->db->query("DELETE FROM tags WHERE videoId = :videoId");
+	    $this->db->bind(':videoId', $videoId);
+	    $this->db->execute();
+	}
+
+////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 	
 } // end class
 
