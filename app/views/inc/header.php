@@ -25,7 +25,7 @@
     </div>
 
     <div class="nav__center">
-      <form action="#" method="POST">
+      <form action="<?= URLROOT . '/searches/'?>" method="POST">
         <input type="text" class="searchBar" name="term" placeholder="Search...">
         <button class="searchButton">
           <img src="<?= URLROOT; ?>/assets/images/icons/search.png" alt="search icon">

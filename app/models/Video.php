@@ -220,6 +220,18 @@ class Video
 
 //////////////////////////////////////////////////////////////////////////
 
+	public function getSearchVideos($term, $orderBy)
+	{
+	    $this->db->query("SELECT v.videoId, v.title, v.description, v.filePath as videoPath, v.uploadDate, v.views, v.duration, t.filePath as thumbPath, u.username FROM videos as v inner join thumbnails as t on v.videoId = t.videoId AND t.selected = 1 inner join users as u on v.uploadedBy = u.userId WHERE (v.title LIKE CONCAT('%', :term, '%') OR u.username LIKE CONCAT('%', :term, '%')) AND v.privacy = 0 ORDER BY $orderBy DESC LIMIT 20");
+
+	    $this->db->bind(':term', $term);
+
+	    return $this->db->resultSet();
+	}
+
+//////////////////////////////////////////////////////////////////////////
+
+
 
 } // end class
 
