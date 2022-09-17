@@ -29,6 +29,49 @@ allVideos.forEach((video) => {
   });
 });
 
+// videos card animation
+gsap.registerPlugin(ScrollTrigger);
+
+document.addEventListener('DOMContentLoaded', () => {
+  const videoCards = document.querySelectorAll(".listContent .videoItem");
+
+  ScrollTrigger.batch(videoCards, {
+    start: "top bottom-=50px",
+    onEnter: (batch) =>
+      gsap.to(batch, { opacity: 1, y: 0, stagger: 0.15, delay: 0.5 }),
+    onLeaveBack: (batch) => gsap.to(batch, { opacity: 0, y: 100, stagger: 0.1 }),
+  });
+});
+
+
+
+// watch page animation
+const videoTag = document.querySelector(".playVideo video");
+const videoTagsDiv = document.querySelector(".playVideo .videoTags");
+const videoInfoDiv = document.querySelector(".playVideo .videoInfo");
+const hr = document.querySelectorAll(".playVideo hr");
+const publisherDiv = document.querySelector(".playVideo .publisher");
+const videoDescriptionDiv = document.querySelector(".playVideo .videoDescription");
+const commentSectionDiv = document.querySelector(".playVideo .commentSection");
+const commentsOffDiv = document.querySelector(".playVideo .commentsOff");
+const suggestionsDiv = document.querySelectorAll(".suggestions .videoItem");
+const cPath = "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)";
+
+const tl = gsap.timeline({ defaults: { ease: "Power1.easeInOut" } });
+
+if (videoTag) {
+  tl
+    .to(videoTag, 0.7, { clipPath: cPath }, "=.1")
+    .to(videoTagsDiv, { clipPath: cPath }, "-=.2")
+    .to(videoInfoDiv, { clipPath: cPath, }, "-=.2")
+    .to(hr, { clipPath: cPath, stagger: 0.2 }, "-=.2")
+    .to(publisherDiv, { clipPath: cPath }, "-=.6")
+    .to(videoDescriptionDiv, { clipPath: cPath }, "-=.5")
+    .to(commentSectionDiv, { clipPath: cPath }, "-=.3")
+    .to(commentsOffDiv, { clipPath: cPath }, "-=.3")
+    .to(suggestionsDiv, { opacity: 1, y: 0, stagger: 0.2 }, "-=1.6");
+}
+
 // tabs
 const tabs = document.querySelectorAll("[data-tab-target]");
 const tabContents = document.querySelectorAll("[data-tab-content]");

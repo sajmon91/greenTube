@@ -11,10 +11,12 @@
     video {
       width: 100%;
       max-height: 72rem;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
     }
 
     .videoTags {
       margin: 0.5rem 0;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 
       a {
         font-size: 1.4rem;
@@ -31,6 +33,7 @@
     .videoInfo {
       width: 100%;
       padding: 0.5rem 0 1rem 0;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 
       h1 {
         font-size: 2.5rem;
@@ -69,6 +72,7 @@
       border: none;
       height: 0.1rem;
       background-color: a.$green;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
     }
 
     .profilePicture {
@@ -84,6 +88,7 @@
       display: flex;
       align-items: center;
       margin-top: 1rem;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 
       div {
         flex: 1;
@@ -143,9 +148,12 @@
       padding-left: 5rem;
       margin: 1rem 0 2rem 0;
       font-size: 1.4rem;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
     }
 
     .commentSection {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+
       .commentHeader {
         display: flex;
         flex-direction: column;
@@ -298,6 +306,7 @@
       justify-content: center;
       margin: 2rem 0;
       font-size: 1.8rem;
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
     }
   }
 
@@ -310,6 +319,8 @@
     .videoItem {
       display: flex;
       margin-bottom: 2rem;
+      transform: translateY(100%);
+      opacity: 0;
 
       .videoThumbnail {
         width: 22rem;

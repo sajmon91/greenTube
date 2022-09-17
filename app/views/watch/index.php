@@ -136,7 +136,7 @@
                     <?php endif; ?>
 
                   </div>
-<!-- ------------------------------------------------ -->
+
                   <div class="replyForm hidden">
                     
                     <?php if (isLoggedIn()) : ?>

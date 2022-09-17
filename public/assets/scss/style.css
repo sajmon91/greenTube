@@ -545,6 +545,7 @@ main.content {
 .listContent .videoItem {
   border-radius: 1rem;
   overflow: hidden;
+  opacity: 0;
 }
 .listContent .videoItem .videoThumbnail {
   height: 21rem;
@@ -799,9 +800,13 @@ main.content {
 .videoContent .playVideo video {
   width: 100%;
   max-height: 72rem;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .videoTags {
   margin: 0.5rem 0;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .videoTags a {
   font-size: 1.4rem;
@@ -815,6 +820,8 @@ main.content {
 .videoContent .playVideo .videoInfo {
   width: 100%;
   padding: 0.5rem 0 1rem 0;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .videoInfo h1 {
   font-size: 2.5rem;
@@ -849,6 +856,8 @@ main.content {
   border: none;
   height: 0.1rem;
   background-color: #1dd320;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .profilePicture {
   width: 4rem;
@@ -862,6 +871,8 @@ main.content {
   display: flex;
   align-items: center;
   margin-top: 1rem;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .publisher div {
   flex: 1;
@@ -912,6 +923,12 @@ main.content {
   padding-left: 5rem;
   margin: 1rem 0 2rem 0;
   font-size: 1.4rem;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+.videoContent .playVideo .commentSection {
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .commentSection .commentHeader {
   display: flex;
@@ -1039,6 +1056,8 @@ main.content {
   justify-content: center;
   margin: 2rem 0;
   font-size: 1.8rem;
+  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .suggestions {
   max-width: 42.5rem;
@@ -1049,6 +1068,8 @@ main.content {
 .videoContent .suggestions .videoItem {
   display: flex;
   margin-bottom: 2rem;
+  transform: translateY(100%);
+  opacity: 0;
 }
 .videoContent .suggestions .videoItem .videoThumbnail {
   width: 22rem;
