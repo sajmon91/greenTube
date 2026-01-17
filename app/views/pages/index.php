@@ -4,7 +4,7 @@
 
   <div class="tags">
 
-    <?php foreach($data['tags'] as $tag): ?>
+    <?php foreach ($data['tags'] as $tag): ?>
       <a href="<?= URLROOT; ?>/tags/<?= $tag->tagName; ?>"><?= $tag->tagName; ?></a>
     <?php endforeach; ?>
 
@@ -12,14 +12,12 @@
 
   <div class="listContent">
 
-    <?php foreach($data['videos'] as $video): ?>
+    <?php foreach ($data['videos'] as $video): ?>
 
-      <div class="videoItem">
+      <div class="videoItem" data-video-on-hover="not-active" data-video-src="<?= URLROOT . '/' . $video->videoPath; ?>">
         <a href="<?= URLROOT; ?>/watch/<?= $video->videoId; ?>">
           <div class="videoThumbnail">
-            <video muted class="videoPlay" poster="<?= $video->thumbPath; ?>">
-              <source src="<?= $video->videoPath; ?>" type="video/mp4">
-            </video>
+            <video muted playsinline webkit-playsinline class="videoPlay" poster="<?= $video->thumbPath; ?>"></video>
             <div class="duration">
               <span><?= $video->duration; ?></span>
             </div>
@@ -41,4 +39,4 @@
 
 </main>
 
- <?php $this->view('inc/footer'); ?>
+<?php $this->view('inc/footer'); ?>

@@ -9,10 +9,10 @@
       </video>
 
       <div class="videoTags">
-        <?php foreach($data['tags'] as $tag): ?>
+        <?php foreach ($data['tags'] as $tag): ?>
           <a href="<?= URLROOT; ?>/tags/<?= $tag->tagName; ?>">#<?= $tag->tagName; ?></a>
         <?php endforeach; ?>
-  
+
       </div>
 
       <div class="videoInfo">
@@ -21,7 +21,7 @@
           <p class="viewCount"><?= Formater::numberFormat($data['video']->views); ?> Views &bull; <?= Formater::dateFormat($data['video']->uploadDate); ?></p>
           <div class="controls">
             <button data-videoid="<?= $data['video']->videoId; ?>" class="likeBtn videoLike" title="I like this">
-              <?php if($data['wasLikedVideo']) : ?>
+              <?php if ($data['wasLikedVideo']) : ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
               <?php else: ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
@@ -30,7 +30,7 @@
             </button>
 
             <button data-videoid="<?= $data['video']->videoId; ?>" class="dislikeBtn videoDislike" title="I dislike this">
-              <?php if($data['wasDislikedVideo']) : ?>
+              <?php if ($data['wasDislikedVideo']) : ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/dislike-active.png" alt="dislike button">
               <?php else: ?>
                 <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
@@ -54,7 +54,7 @@
           <span><?= Formater::getFormattedNumber($data['subsCount']); ?> Subscribers</span>
         </div>
 
-        <?php if($data['isMyVideo']): ?>
+        <?php if ($data['isMyVideo']): ?>
           <a href="<?= URLROOT . '/editVideos/' . $data['video']->videoId; ?>">
             <button class="editBtn">Edit</button>
           </a>
@@ -78,7 +78,7 @@
               <p><?= $data['totalComm']; ?> <?= ($data['totalComm'] > 1 ? 'Comments' : 'Comment'); ?></p>
             </div>
             <div class="commentForm">
-              
+
               <?php if (isLoggedIn()) : ?>
                 <a href="<?= URLROOT; ?>/profiles/<?= $_SESSION['username']; ?>">
                   <img class="profilePicture" src="<?= URLROOT . $_SESSION['profile_pic']; ?>" alt="user">
@@ -86,7 +86,7 @@
               <?php else: ?>
                 <img class="profilePicture" src="<?= URLROOT; ?>/assets/images/icons/user.png" alt="user">
               <?php endif; ?>
-              
+
               <textarea class="commentBody" placeholder="Add a comment..."></textarea>
 
               <button data-videoid="<?= $data['video']->videoId; ?>" class="postComment">Comment</button>
@@ -95,7 +95,7 @@
 
           <div class="comments">
 
-            <?php foreach($data['comments'] as $comm) : ?>
+            <?php foreach ($data['comments'] as $comm) : ?>
 
               <div class="commentWrapper">
                 <a href="<?= URLROOT; ?>/profiles/<?= $comm['com']->username; ?>">
@@ -108,7 +108,7 @@
 
                   <div class="controls">
                     <button data-commid="<?= $comm['com']->commentId; ?>" class="likeBtn commLikeBtn" title="I like this">
-                      <?php if($comm['wasLiked']) : ?>
+                      <?php if ($comm['wasLiked']) : ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/like-active.png" alt="like button">
                       <?php else: ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/like.png" alt="like button">
@@ -117,7 +117,7 @@
                     </button>
 
                     <button data-commid="<?= $comm['com']->commentId; ?>" class="dislikeBtn commDislikeBtn" title="I dislike this">
-                      <?php if($comm['wasDisliked']) : ?>
+                      <?php if ($comm['wasDisliked']) : ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/dislike-active.png" alt="dislike button">
                       <?php else: ?>
                         <img src="<?= URLROOT; ?>/assets/images/icons/dislike.png" alt="dislike button">
@@ -129,7 +129,7 @@
                       <span class="btnText">Reply</span>
                     </button>
 
-                    <?php if ($comm['replies'] !== 0) :?>
+                    <?php if ($comm['replies'] !== 0) : ?>
                       <button data-commid="<?= $comm['com']->commentId; ?>" data-urlroot="<?= URLROOT; ?>" class="viewReplies">
                         <span class="btnText">View all <?= $comm['replies']; ?> replies</span>
                       </button>
@@ -138,7 +138,7 @@
                   </div>
 
                   <div class="replyForm hidden">
-                    
+
                     <?php if (isLoggedIn()) : ?>
                       <a href="<?= URLROOT; ?>/profiles/<?= $_SESSION['username']; ?>">
                         <img class="profilePicture" src="<?= URLROOT . $_SESSION['profile_pic']; ?>" alt="user">
@@ -146,7 +146,7 @@
                     <?php else: ?>
                       <img class="profilePicture" src="<?= URLROOT; ?>/assets/images/icons/user.png" alt="user">
                     <?php endif; ?>
-                    
+
                     <textarea class="replyCommentBody" placeholder="Add a comment..."></textarea>
 
                     <button class="cancelBtn">Cancel</button>
@@ -176,13 +176,11 @@
 
     <aside class="suggestions">
 
-      <?php foreach($data['catVideos'] as $catVideo) : ?>
-        <div class="videoItem">
+      <?php foreach ($data['catVideos'] as $catVideo) : ?>
+        <div class="videoItem" data-video-on-hover="not-active" data-video-src="<?= URLROOT . '/' . $catVideo->videoPath; ?>">
           <a href="<?= URLROOT; ?>/watch/<?= $catVideo->videoId; ?>">
             <div class="videoThumbnail">
-              <video muted class="videoPlay" poster="<?= URLROOT . '/' . $catVideo->thumbPath; ?>">
-                <source src="<?= URLROOT . '/' . $catVideo->videoPath; ?>" type="video/mp4">
-              </video>
+              <video muted playsinline webkit-playsinline class="videoPlay" poster="<?= URLROOT . '/' . $catVideo->thumbPath; ?>"></video>
               <div class="duration">
                 <span><?= $catVideo->duration; ?></span>
               </div>
@@ -199,8 +197,8 @@
     </aside>
   </div>
 
-  
+
 
 </main>
 
- <?php $this->view('inc/footer'); ?>
+<?php $this->view('inc/footer'); ?>

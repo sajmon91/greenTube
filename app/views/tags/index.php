@@ -2,21 +2,19 @@
 
 <main class="content">
 
-<div class="tagName">
-  <h3>#<?= $data['tagName']; ?></h3>
-  <p><?= $data['videosCount']; ?> videos</p>
-</div>
+  <div class="tagName">
+    <h3>#<?= $data['tagName']; ?></h3>
+    <p><?= $data['videosCount']; ?> videos</p>
+  </div>
 
   <div class="listContent">
 
-    <?php foreach($data['videos'] as $video): ?>
+    <?php foreach ($data['videos'] as $video): ?>
 
-      <div class="videoItem">
+      <div class="videoItem" data-video-on-hover="not-active" data-video-src="<?= URLROOT . '/' . $video->videoPath; ?>">
         <a href="<?= URLROOT; ?>/watch/<?= $video->videoId; ?>">
           <div class="videoThumbnail">
-            <video muted class="videoPlay" poster="<?= URLROOT . "/" . $video->thumbPath; ?>">
-              <source src="<?= URLROOT . "/" . $video->videoPath; ?>" type="video/mp4">
-            </video>
+            <video muted playsinline webkit-playsinline class="videoPlay" poster="<?= URLROOT . "/" . $video->thumbPath; ?>"></video>
             <div class="duration">
               <span><?= $video->duration; ?></span>
             </div>
@@ -38,4 +36,4 @@
 
 </main>
 
- <?php $this->view('inc/footer'); ?>
+<?php $this->view('inc/footer'); ?>

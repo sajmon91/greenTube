@@ -18,16 +18,36 @@ if (menuBtn) {
 }
 
 // videos hover
-const allVideos = document.querySelectorAll(".videoPlay");
+function initPlayVideoHover() {
+  const wrappers = document.querySelectorAll('[data-video-on-hover]');
 
-allVideos.forEach((video) => {
-  video.addEventListener("mouseover", () => {
-    video.play();
+  wrappers.forEach(wrapper => {
+    const video = wrapper.querySelector('video');
+    const src = wrapper.getAttribute('data-video-src') || '';
+    
+    if (!video || !src) return;
+
+    wrapper.addEventListener('mouseenter', () => {
+      if (!video.getAttribute('src')) {
+        video.setAttribute('src', src);
+      }
+      wrapper.dataset.videoOnHover = 'active';
+      video.play().catch(err => {
+        console.warn('play on hover is blocked:', err);
+      });
+    });
+
+    wrapper.addEventListener('mouseleave', () => {
+      wrapper.dataset.videoOnHover = 'not-active';
+      setTimeout(() => {
+        video.pause();
+        video.currentTime = 0;
+      }, 200);
+    });
   });
-  video.addEventListener("mouseleave", () => {
-    video.pause();
-  });
-});
+}
+
+initPlayVideoHover();
 
 // videos card animation
 gsap.registerPlugin(ScrollTrigger);
