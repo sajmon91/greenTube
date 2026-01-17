@@ -149,19 +149,6 @@ main.content {
   font-size: 1.8rem;
 }
 
-@-webkit-keyframes display-none-transition {
-  0% {
-    display: none;
-    opacity: 0;
-  }
-  1% {
-    display: block;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 @keyframes display-none-transition {
   0% {
     display: none;
@@ -182,7 +169,6 @@ main.content {
   flex-direction: row;
   padding: 1rem 2rem;
   background-color: #202020;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   z-index: 10;
@@ -381,7 +367,7 @@ main.content {
     padding: 1rem;
   }
   .nav__left .logo h1,
-.nav__left .menuIcon {
+  .nav__left .menuIcon {
     display: none;
   }
 }
@@ -410,7 +396,6 @@ main.content {
   overflow: hidden;
   flex-shrink: 0;
   padding-top: 1rem;
-  position: -webkit-sticky;
   position: sticky;
   top: 10rem;
   left: 0;
@@ -794,19 +779,30 @@ main.content {
   display: flex;
   padding: 2rem;
 }
+.videoContent .playVideo video,
+.videoContent .playVideo .videoTags,
+.videoContent .playVideo .videoInfo,
+.videoContent .playVideo hr,
+.videoContent .playVideo .publisher,
+.videoContent .playVideo .videoDescription,
+.videoContent .playVideo .commentSection,
+.videoContent .playVideo .commentsOff,
+.videoContent .suggestions .videoItem {
+  will-change: clip-path, opacity, transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
 .videoContent .playVideo {
   flex: 1;
 }
 .videoContent .playVideo video {
   width: 100%;
   max-height: 72rem;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .videoTags {
   margin: 0.5rem 0;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .videoTags a {
   font-size: 1.4rem;
@@ -820,8 +816,7 @@ main.content {
 .videoContent .playVideo .videoInfo {
   width: 100%;
   padding: 0.5rem 0 1rem 0;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .videoInfo h1 {
   font-size: 2.5rem;
@@ -856,8 +851,7 @@ main.content {
   border: none;
   height: 0.1rem;
   background-color: #1dd320;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .profilePicture {
   width: 4rem;
@@ -871,8 +865,7 @@ main.content {
   display: flex;
   align-items: center;
   margin-top: 1rem;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .publisher div {
   flex: 1;
@@ -923,12 +916,10 @@ main.content {
   padding-left: 5rem;
   margin: 1rem 0 2rem 0;
   font-size: 1.4rem;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .commentSection {
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .playVideo .commentSection .commentHeader {
   display: flex;
@@ -1056,8 +1047,7 @@ main.content {
   justify-content: center;
   margin: 2rem 0;
   font-size: 1.8rem;
-  -webkit-clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-          clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 .videoContent .suggestions {
   max-width: 42.5rem;
@@ -1281,8 +1271,7 @@ main.content {
 }
 .profileContent .tabContent [data-tab-content] {
   display: none;
-  -webkit-animation: display-none-transition 1s ease-in-out;
-          animation: display-none-transition 1s ease-in-out;
+  animation: display-none-transition 1s ease-in-out;
 }
 .profileContent .tabContent .active[data-tab-content] {
   display: block;
@@ -1679,17 +1668,6 @@ main.content {
   text-overflow: ellipsis;
   width: 100%;
 }
-.uploadEditVideoContent .uploadWrapper .uploadInput #inputFile::-webkit-file-upload-button {
-  border: 0.1rem solid #fff;
-  padding: 0.4rem 0.8rem;
-  color: #fff;
-  border-radius: 0.5rem;
-  background-color: transparent;
-  cursor: pointer;
-  font-size: 1.4rem;
-  -webkit-transition: 1s;
-  transition: 1s;
-}
 .uploadEditVideoContent .uploadWrapper .uploadInput #inputFile::file-selector-button {
   border: 0.1rem solid #fff;
   padding: 0.4rem 0.8rem;
@@ -1699,10 +1677,6 @@ main.content {
   cursor: pointer;
   font-size: 1.4rem;
   transition: 1s;
-}
-.uploadEditVideoContent .uploadWrapper .uploadInput #inputFile::-webkit-file-upload-button:hover {
-  border: 0.1rem solid #1dd320;
-  color: #1dd320;
 }
 .uploadEditVideoContent .uploadWrapper .uploadInput #inputFile::file-selector-button:hover {
   border: 0.1rem solid #1dd320;
@@ -1828,13 +1802,13 @@ main.content {
 }
 @media (max-width: 850px) {
   .uploadEditVideoContent .uploadWrapper,
-.uploadEditVideoContent .editVideo {
+  .uploadEditVideoContent .editVideo {
     width: 90%;
   }
 }
 @media (max-width: 750px) {
   .uploadEditVideoContent .uploadWrapper,
-.uploadEditVideoContent .editVideo {
+  .uploadEditVideoContent .editVideo {
     width: 95%;
   }
 }
@@ -1864,14 +1838,14 @@ main.content {
     flex: 1;
   }
   .uploadEditVideoContent .uploadWrapper .uploadInput .uploadLabel,
-.uploadEditVideoContent .uploadWrapper .uploadInput .uploadPara {
+  .uploadEditVideoContent .uploadWrapper .uploadInput .uploadPara {
     width: auto;
     margin-bottom: 1rem;
   }
   .uploadEditVideoContent .uploadWrapper .uploadInput #title,
-.uploadEditVideoContent .uploadWrapper .uploadInput #description,
-.uploadEditVideoContent .uploadWrapper .uploadInput .uploadTags #tags,
-.uploadEditVideoContent .uploadWrapper .uploadInput .uploadTags {
+  .uploadEditVideoContent .uploadWrapper .uploadInput #description,
+  .uploadEditVideoContent .uploadWrapper .uploadInput .uploadTags #tags,
+  .uploadEditVideoContent .uploadWrapper .uploadInput .uploadTags {
     width: 100%;
   }
   .uploadEditVideoContent .uploadWrapper .formBtn {

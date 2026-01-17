@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Watch extends Controller
 {
@@ -12,16 +12,16 @@ class Watch extends Controller
 
 	public function __construct()
 	{
-	    $this->videoModel = $this->model('Video');
-	    $this->tagModel = $this->model('Tag');
-	    $this->userModel = $this->model('User');
-	    $this->likeModel = $this->model('Like');
-	    $this->dislikeModel = $this->model('Dislike');
-	    $this->subscriberModel = $this->model('Subscriber');
-	    $this->commentModel = $this->model('Comment');
+		$this->videoModel = $this->model('Video');
+		$this->tagModel = $this->model('Tag');
+		$this->userModel = $this->model('User');
+		$this->likeModel = $this->model('Like');
+		$this->dislikeModel = $this->model('Dislike');
+		$this->subscriberModel = $this->model('Subscriber');
+		$this->commentModel = $this->model('Comment');
 	}
 
-/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 
 	public function index($videoId)
 	{
@@ -30,6 +30,7 @@ class Watch extends Controller
 
 		// get video, tags, user upload info,videos by category, likes...
 		$video = $this->videoModel->getVideoById($videoId);
+		$videoThumb = $this->videoModel->getVideoThumbnailById($videoId);
 		$tags = $this->tagModel->getTagsByVideoId($videoId);
 		$user = $this->userModel->getUserDataById($video->uploadedBy);
 		$videosByCat = $this->videoModel->getVideosByCategory($video->category, $video->videoId);
@@ -47,7 +48,7 @@ class Watch extends Controller
 
 		$numOfComm = $this->commentModel->getNumberOfComments($video->videoId);
 		$comments = $this->commentModel->getAllVideoComments($video->videoId);
-		$comms = array_map(function($el){
+		$comms = array_map(function ($el) {
 			$comLikes = $this->likeModel->getCommentLikes($el->commentId);
 			$comDislikes = $this->dislikeModel->getCommentDislikes($el->commentId);
 			$numReplises = $this->commentModel->getNumberOfReplies($el->commentId);
@@ -68,7 +69,7 @@ class Watch extends Controller
 		if ($video->privacy && !$isMyVideo) {
 			redirect('');
 		}
-		
+
 		// init data
 		$data = [
 			'title' => $video->title . ' - ' . SITENAME,
@@ -85,108 +86,97 @@ class Watch extends Controller
 			'isMyVideo' => $isMyVideo,
 			'subs' => $subs,
 			'totalComm' => $numOfComm,
-			'comments' => $comms
+			'comments' => $comms,
+			'thumbPath' => $videoThumb
 		];
 
 		// load view
-	    $this->view('watch/index', $data);
+		$this->view('watch/index', $data);
 	}
 
-/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 
 	public function like()
 	{
 		$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-		if($contentType === "application/json"){
+		if ($contentType === "application/json") {
 
-		    $content = trim(file_get_contents('php://input'));
+			$content = trim(file_get_contents('php://input'));
 
-		    $videoId = (int)json_decode($content);
-		    $userId = $_SESSION['user_id'];
+			$videoId = (int)json_decode($content);
+			$userId = $_SESSION['user_id'];
 
-		    if ($this->likeModel->wasLikedBy($userId, $videoId)) {
+			if ($this->likeModel->wasLikedBy($userId, $videoId)) {
 
-		    	$this->likeModel->deleteVideoLike($userId, $videoId);
+				$this->likeModel->deleteVideoLike($userId, $videoId);
 
-		    	$result = [
-		    		'likes' => -1,
-		    		'dislikes' => 0
-		    	];
+				$result = [
+					'likes' => -1,
+					'dislikes' => 0
+				];
 
-	    		echo json_encode($result);
+				echo json_encode($result);
+			} else {
 
-		    }else{
-		    	
-		    	$count = $this->dislikeModel->deleteVideoDislike($userId, $videoId);
+				$count = $this->dislikeModel->deleteVideoDislike($userId, $videoId);
 
-		    	$this->likeModel->insertVideoLike($userId, $videoId);
+				$this->likeModel->insertVideoLike($userId, $videoId);
 
-		    	$result = [
-		    		'likes' => 1,
-		    		'dislikes' => 0 - $count
-		    	];
+				$result = [
+					'likes' => 1,
+					'dislikes' => 0 - $count
+				];
 
-		    	echo json_encode($result);
-		    }
+				echo json_encode($result);
+			}
 		}
 	}
 
-/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 
 	public function dislike()
 	{
-	    $contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
+		$contentType = isset($_SERVER["CONTENT_TYPE"]) ? trim($_SERVER["CONTENT_TYPE"]) : '';
 
-		if($contentType === "application/json"){
+		if ($contentType === "application/json") {
 
-		    $content = trim(file_get_contents('php://input'));
+			$content = trim(file_get_contents('php://input'));
 
-		    $videoId = (int)json_decode($content);
-		    $userId = $_SESSION['user_id'];
+			$videoId = (int)json_decode($content);
+			$userId = $_SESSION['user_id'];
 
-		    if ($this->dislikeModel->wasVideoDislikedBy($userId, $videoId)) {
+			if ($this->dislikeModel->wasVideoDislikedBy($userId, $videoId)) {
 
-		    	$this->dislikeModel->deleteVideoDislike($userId, $videoId);
+				$this->dislikeModel->deleteVideoDislike($userId, $videoId);
 
-		    	$result = [
-		    		'likes' => 0,
-		    		'dislikes' => -1
-		    	];
+				$result = [
+					'likes' => 0,
+					'dislikes' => -1
+				];
 
-	    		echo json_encode($result);
+				echo json_encode($result);
+			} else {
 
-		    }else{
-		    	
-		    	$count = $this->likeModel->deleteVideoLike($userId, $videoId);
+				$count = $this->likeModel->deleteVideoLike($userId, $videoId);
 
-		    	$this->dislikeModel->insertVideoDislike($userId, $videoId);
+				$this->dislikeModel->insertVideoDislike($userId, $videoId);
 
-		    	$result = [
-		    		'likes' => 0 - $count,
-		    		'dislikes' => 1
-		    	];
+				$result = [
+					'likes' => 0 - $count,
+					'dislikes' => 1
+				];
 
-		    	echo json_encode($result);
-		    }
+				echo json_encode($result);
+			}
 		}
 	}
 
-/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 
 
 
 
 
-	
+
 } // end class
-
-
-
-
-
-
-
-
-
- ?>

@@ -49,6 +49,27 @@ function initPlayVideoHover() {
 
 initPlayVideoHover();
 
+function playMainVideo(){
+  const video = document.querySelector('[data-main-video]');
+  if (!video) return;
+
+  const src = video.dataset.videoSrc;
+  if (!src) return;
+
+  const DELAY = 1500;
+
+  setTimeout(() => {
+    video.src = src;
+    video.load();
+
+    video.play();
+  }, DELAY);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  playMainVideo();
+});
+
 // videos card animation
 gsap.registerPlugin(ScrollTrigger);
 

@@ -5,6 +5,20 @@
   display: flex;
   padding: 2rem;
 
+  .playVideo video,
+  .playVideo .videoTags,
+  .playVideo .videoInfo,
+  .playVideo hr,
+  .playVideo .publisher,
+  .playVideo .videoDescription,
+  .playVideo .commentSection,
+  .playVideo .commentsOff,
+  .suggestions .videoItem {
+    will-change: clip-path, opacity, transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+
   .playVideo {
     flex: 1;
 

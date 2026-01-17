@@ -4,9 +4,7 @@
 
   <div class="videoContent">
     <div class="playVideo">
-      <video controls autoplay>
-        <source src="<?= URLROOT . '/' . $data['video']->filePath; ?>" type="video/mp4">
-      </video>
+      <video data-main-video controls muted playsinline preload="none" data-video-src="<?= URLROOT . '/' . $data['video']->filePath; ?>" poster="<?= URLROOT . '/' . $data['thumbPath']->filePath; ?>"></video>
 
       <div class="videoTags">
         <?php foreach ($data['tags'] as $tag): ?>
