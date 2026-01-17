@@ -48,17 +48,17 @@
           <button data-tab-target="#about" class="profileMenuLink">About</button>
         </div>
 
-        
-          <div class="subsButton">
-            <button class="follow"><?= Formater::numberFormat($data['subsCount']); ?></button>
 
-            <?php if(!$data['isMyProfile']): ?>
-              <button data-subId="<?= $data['userData']->userId; ?>" class="follow subscribeBtn <?= (($data['isSubscribedTo']) ? 'unsubscribe' : 'subscribe'); ?>"><?= (($data['isSubscribedTo']) ? 'Subscribed' : 'Subscribe'); ?></button>
-            <?php else: ?>
-              <button class="follow subs">Subscribers</button>
-            <?php endif; ?>
-          </div>
-        
+        <div class="subsButton">
+          <button class="follow"><?= Formater::numberFormat($data['subsCount']); ?></button>
+
+          <?php if (!$data['isMyProfile']): ?>
+            <button data-subId="<?= $data['userData']->userId; ?>" class="follow subscribeBtn <?= (($data['isSubscribedTo']) ? 'unsubscribe' : 'subscribe'); ?>"><?= (($data['isSubscribedTo']) ? 'Subscribed' : 'Subscribe'); ?></button>
+          <?php else: ?>
+            <button class="follow subs">Subscribers</button>
+          <?php endif; ?>
+        </div>
+
 
       </div>
     </div>
@@ -71,12 +71,10 @@
 
           <?php foreach ($data['videos'] as $video) : ?>
 
-            <div class="videoItem">
+            <div class="videoItem" data-video-on-hover="not-active" data-video-src="<?= URLROOT . '/' . $video->videoPath; ?>">
               <a href="<?= URLROOT . '/watch/' . $video->videoId; ?>">
                 <div class="videoThumbnail">
-                  <video muted class="videoPlay" poster="<?= URLROOT . '/' . $video->thumbPath; ?>">
-                    <source src="<?= URLROOT . '/' . $video->videoPath; ?>" type="video/mp4">
-                  </video>
+                  <video muted playsinline webkit-playsinline class="videoPlay" poster="<?= URLROOT . '/' . $video->thumbPath; ?>"></video>
                   <div class="duration">
                     <span><?= $video->duration; ?></span>
                   </div>
@@ -99,7 +97,7 @@
       <div id="about" data-tab-content>
         <div class="tabAbout">
 
-          <?php if($data['userData']->channelDesc): ?>
+          <?php if ($data['userData']->channelDesc): ?>
             <div class="tabDesc">
               <h3>Description</h3>
               <p><?= $data['userData']->channelDesc; ?></p>
@@ -126,4 +124,4 @@
 
 </main>
 
- <?php $this->view('inc/footer'); ?>
+<?php $this->view('inc/footer'); ?>
