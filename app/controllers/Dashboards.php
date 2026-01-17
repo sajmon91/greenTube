@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 class Dashboards extends Controller
 {
@@ -10,22 +10,22 @@ class Dashboards extends Controller
 
 	public function __construct()
 	{
-	    $this->videoModel = $this->model('Video'); 
-	    $this->likeModel = $this->model('Like');
-	    $this->dislikeModel = $this->model('Dislike');
-	    $this->commentModel = $this->model('Comment');
-	    $this->subscriberModel = $this->model('Subscriber');
+		$this->videoModel = $this->model('Video');
+		$this->likeModel = $this->model('Like');
+		$this->dislikeModel = $this->model('Dislike');
+		$this->commentModel = $this->model('Comment');
+		$this->subscriberModel = $this->model('Subscriber');
 	}
 
-/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 
 	public function index($userId)
-	{	
+	{
 		if (!isLoggedIn()) {
 			redirect('');
 		}
 
-		$userId = filter_var($userId, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+		$userId = (int)filter_var($userId, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
 		if ($userId !== $_SESSION['user_id']) {
 			redirect('');
@@ -34,7 +34,7 @@ class Dashboards extends Controller
 		$videos = $this->videoModel->getVideosInDashboard($userId);
 		$subs = $this->subscriberModel->getSubscriptions();
 
-		$vid = array_map(function($el){
+		$vid = array_map(function ($el) {
 			$likes = $this->likeModel->getLikes($el->videoId)->likeCount;
 			$dislikes = $this->dislikeModel->getDislikes($el->videoId)->dislikeCount;
 			$comments = $this->commentModel->getNumberOfComments($el->videoId);
@@ -53,10 +53,10 @@ class Dashboards extends Controller
 			'subs' => $subs
 		];
 
-	    $this->view('dashboards/index', $data);
+		$this->view('dashboards/index', $data);
 	}
 
-/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
 
 
 
@@ -65,9 +65,5 @@ class Dashboards extends Controller
 
 
 
-	
+
 } // end class
-
-
-
- ?>

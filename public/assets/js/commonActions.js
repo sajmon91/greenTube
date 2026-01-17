@@ -139,10 +139,10 @@ function sortTableByColumn(table, column, sortBy, asc = true) {
     }
 
     if (sortBy === "byViews") {
-      const n1 = parseInt(aColText);
-      const n2 = parseInt(bColText);
+      const n1 = parseInt(aColText, 10);
+      const n2 = parseInt(bColText, 10);
 
-      return n1 - n2 * dirModifier;
+      return (n1 - n2) * dirModifier;
     }
   });
 
