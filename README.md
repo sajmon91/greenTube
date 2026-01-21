@@ -24,7 +24,7 @@
 ## Installation / Setup
 
 1. Clone the repository
-2. Import the database from greentube.sql
-3. Configure config.php (database credentials and URL root)
+2. Import the database from `greentube.sql`
+3. Configure `config.php` (database credentials and URL root)
 4. Start your local server (WAMP, XAMPP, Laragon)
 5. Open the application in your browser
